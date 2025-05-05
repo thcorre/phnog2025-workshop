@@ -2,7 +2,7 @@
 
 This README is your starting point into the workshop, it should get you familiar with the lab environment provided by Nokia, and provide an overview of the suggested sample activities.
 
-During those 3 days you will work in groups (or alone if you prefer) on the pre-provided lab activities.
+During those 3 days you will work in groups on the pre-provided lab activities.
 
 As long as you have a laptop with the ability to SSH, you should be good to go. 
 
@@ -11,10 +11,10 @@ Also not mandatory, however use of VScode editor would also be of great value to
 Need help, not a problem, pop your hand in the air and we will be there to guide you. 
 
 ## Lab Environment
-For this workshop each (group of) participant(s) will receive their own dedicated cloud instance (VM) running a copy of the generic lab topology.
+For this workshop each group of participants will receive their own dedicated directory running a copy of the lab topology.
 
 If everything went according to plan, you should have received a physical piece of paper which contains:
-- a group ID allocated to your group (or to yourself if you're working alone)
+- a group ID allocated to your group
 - SSH credentials to a public cloud instance dedicated to your group. 
 - HTTPS URL's towards this repo and access to a web based IDE in case you don't have one installed on your operating system.
 
@@ -23,7 +23,7 @@ If everything went according to plan, you should have received a physical piece 
 
 ### Group ID
 
-Please refer to the paper provided by the hackathon session leader. If nothing has been provided, not a problem, pop your hand in the air and an eager expert will be there to allocate one for you. 
+Please refer to the paper provided by the workshop session leaders. If nothing has been provided, not a problem, pop your hand in the air and an eager expert will be there to allocate one for you. 
 
 | Group ID | hostname instance |
 | --- | --- |
@@ -120,16 +120,13 @@ sudo containerlab inspect -a
 |  6 |              |           | clab-innog8-client11   | 6c30905e24d7 | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.36/24 | N/A          |
 |  7 |              |           | clab-innog8-client12   | e7c67b6243ad | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.37/24 | N/A          |
 |  8 |              |           | clab-innog8-client13   | dd3e7de474fe | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.38/24 | N/A          |
-|  9 |              |           | clab-innog8-client21   | b0aa7b04e83d | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.42/24 | N/A          |
-| 10 |              |           | clab-innog8-dns        | 908441c7e174 | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.15/24 | N/A          |
+|  9 |              |           | clab-innog8-client21   | b0aa7b04e83d | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.42/24 | N/A          |        |
 | 11 |              |           | clab-innog8-gnmic      | 49fd00767f0a | ghcr.io/openconfig/gnmic:0.36.2    | linux         | running | 10.128.1.71/24 | N/A          |
 | 12 |              |           | clab-innog8-grafana    | ae9792b4685a | grafana/grafana:10.3.5             | linux         | running | 10.128.1.73/24 | N/A          |
 | 13 |              |           | clab-innog8-ixp1       | 8f2e2a34ec1d | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.51/24 | N/A          |
-| 14 |              |           | clab-innog8-leaf11     | ae40f8086951 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.33/24 | N/A          |
-| 15 |              |           | clab-innog8-leaf12     | 5b8ef1f0851f | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.34/24 | N/A          |
-| 16 |              |           | clab-innog8-leaf13     | 0b6cdb0f1f74 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.35/24 | N/A          |
-| 17 |              |           | clab-innog8-leaf21     | fbe450f93f20 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.41/24 | N/A          |
-| 18 |              |           | clab-innog8-loki       | 81e922e2255b | grafana/loki:2.9.7                 | linux         | running | 10.128.1.76/24 | N/A          |
+| 14 |              |           | clab-innog8-leaf1     | ae40f8086951 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.33/24 | N/A          |
+| 15 |              |           | clab-innog8-leaf2     | 5b8ef1f0851f | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.34/24 | N/A          |
+| 16 |              |           | clab-innog8-leaf3     | 0b6cdb0f1f74 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.35/24 | N/A          |        |      |
 | 19 |              |           | clab-innog8-p1         | 9a7be92bc261 | vr-sros:24.7.R1                    | nokia_sros    | running | 10.128.1.11/24 | N/A          |
 | 20 |              |           | clab-innog8-p2         | dcf131b23d80 | vr-sros:24.7.R1                    | nokia_sros    | running | 10.128.1.12/24 | N/A          |
 | 21 |              |           | clab-innog8-pe1        | eb95be700e43 | vr-sros:24.7.R1                    | nokia_sros    | running | 10.128.1.21/24 | N/A          |
@@ -137,17 +134,11 @@ sudo containerlab inspect -a
 | 23 |              |           | clab-innog8-pe3        | b75dae1a645a | vr-sros:24.7.R1                    | nokia_sros    | running | 10.128.1.23/24 | N/A          |
 | 24 |              |           | clab-innog8-pe4        | 35b7bb4c8a9e | vr-sros:24.7.R1                    | nokia_sros    | running | 10.128.1.24/24 | N/A          |
 | 25 |              |           | clab-innog8-peering2   | 53d62d034b51 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.53/24 | N/A          |
-| 26 |              |           | clab-innog8-prometheus | 6411ad6c5712 | prom/prometheus:v2.51.2            | linux         | running | 10.128.1.72/24 | N/A          |
-| 27 |              |           | clab-innog8-promtail   | 4db67735ce8b | grafana/promtail:2.9.7             | linux         | running | 10.128.1.75/24 | N/A          |
-| 28 |              |           | clab-innog8-radius     | 9ce33544e642 | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.14/24 | N/A          |
+| 26 |              |           | clab-innog8-prometheus | 6411ad6c5712 | prom/prometheus:v2.51.2            | linux         | running | 10.128.1.72/24 | N/A          |        |
 | 29 |              |           | clab-innog8-rpki       | 2fed2c9c9306 | rpki/stayrtr                       | linux         | running | 10.128.1.55/24 | N/A          |
-| 30 |              |           | clab-innog8-spine11    | 56298e38e060 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.31/24 | N/A          |
-| 31 |              |           | clab-innog8-spine12    | ae95193f1764 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.32/24 | N/A          |
-| 32 |              |           | clab-innog8-sub1       | 7198475d0d38 | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.61/24 | N/A          |
-| 33 |              |           | clab-innog8-sub2       | 7b1e568aa8bc | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.62/24 | N/A          |
-| 34 |              |           | clab-innog8-sub3       | 2bfa959cf182 | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.63/24 | N/A          |
+| 30 |              |           | clab-innog8-spine1    | 56298e38e060 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.31/24 | N/A          |
+| 31 |              |           | clab-innog8-spine2    | ae95193f1764 | ghcr.io/nokia/srlinux:24.7.1       | nokia_srlinux | running | 10.128.1.32/24 | N/A          |       |
 | 36 |              |           | clab-innog8-transit1   | 7836cd8cde2c | ghcr.io/srl-labs/network-multitool | linux         | running | 10.128.1.54/24 | N/A          |
-| 37 |              |           | clab-innog8-vRR        | bca098b72c01 | vr-sros:24.7.R1                    | nokia_sros    | running | 10.128.1.13/24 | N/A          |
 +----+--------------+-----------+---------------------------+--------------+------------------------------------+---------------+---------+----------------+--------------+
 ```
 
@@ -174,17 +165,14 @@ clab-innog8-client01    50025 -> 22
 clab-innog8-client02    50026 -> 22
 clab-innog8-client03    50027 -> 22
 clab-innog8-client04    50028 -> 22
-clab-innog8-client11    50036 -> 22
-clab-innog8-client12    50037 -> 22
-clab-innog8-client13    50038 -> 22
-clab-innog8-client21    50042 -> 22
-clab-innog8-dns         50015 -> 22
+clab-innog8-client1     50036 -> 22
+clab-innog8-client2     50037 -> 22
+clab-innog8-client3     50038 -> 22
 clab-innog8-grafana     3000 -> 3000
 clab-innog8-ixp1        50051 -> 22, 50351 -> 57400
-clab-innog8-leaf11      50033 -> 22, 50333 -> 57400
-clab-innog8-leaf12      50034 -> 22, 50334 -> 57400
-clab-innog8-leaf13      50035 -> 22, 50335 -> 57400
-clab-innog8-leaf21      50041 -> 22, 50341 -> 57400
+clab-innog8-leaf1       50033 -> 22, 50333 -> 57400
+clab-innog8-leaf2       50034 -> 22, 50334 -> 57400
+clab-innog8-leaf3       50035 -> 22, 50335 -> 57400
 clab-innog8-p1          50011 -> 22, 50411 -> 830, 50311 -> 57400
 clab-innog8-p2          50012 -> 22, 50412 -> 830, 50312 -> 57400
 clab-innog8-pe1         50021 -> 22, 50421 -> 830, 50321 -> 57400
@@ -193,14 +181,9 @@ clab-innog8-pe3         50023 -> 22, 50423 -> 830, 50323 -> 57400
 clab-innog8-pe4         50024 -> 22, 50424 -> 830, 50324 -> 57400
 clab-innog8-peering2    50053 -> 22, 50353 -> 57400
 clab-innog8-prometheus  9090 -> 9090
-clab-innog8-radius      50014 -> 22
 clab-innog8-spine11     50031 -> 22, 50331 -> 57400
 clab-innog8-spine12     50032 -> 22, 50332 -> 57400
-clab-innog8-sub1        50061 -> 22
-clab-innog8-sub2        50062 -> 22
-clab-innog8-sub3        50063 -> 22
 clab-innog8-transit1    50054 -> 22
-clab-innog8-vRR         50013 -> 22, 50413 -> 830, 50313 -> 57400
 ```
 
 Each service exposed on a lab node gets a unique external port number as per the table above. 
@@ -243,7 +226,7 @@ In the generic topology, linux clients are attached to a number of routers:
 One can start and/or stop traffic by connecting to the relevant client using SSH, and running `/traffic.sh`, for example:
 
 ```
-ssh user@clab-innog8-client11
+ssh user@clab-innog8-client1
 
 client11:~$ /traffic.sh [-a <start|stop>] [-d <dns hostname>]
 ```
