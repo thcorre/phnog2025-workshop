@@ -1,0 +1,141 @@
+name: peering
+
+topology:
+  kinds:
+    nokia_sros:
+      image: registry.srlinux.dev/pub/vr-sros:24.10.R4
+      license: ./license_sr.key
+
+  nodes:
+    pe1:
+      kind: nokia_sros
+      startup-config: configs/pe1/pe1.sros.partial.cfg
+      labels:
+        graph-posX: "735"
+        graph-posY: "535"
+        graph-groupLabelPos: bottom-center
+    pe2:
+      kind: nokia_sros
+      startup-config: configs/pe2/pe2.sros.partial.cfg
+      labels:
+        graph-posX: "855"
+        graph-posY: "535"
+        graph-groupLabelPos: bottom-center
+    pe3:
+      kind: nokia_sros
+      startup-config: configs/pe3/pe3.sros.partial.cfg
+      labels:
+        graph-posX: "735"
+        graph-posY: "385"
+        graph-groupLabelPos: bottom-center
+    pe4:
+      kind: nokia_sros
+      startup-config: configs/pe4/pe4.sros.partial.cfg
+      labels:
+        graph-posX: "795"
+        graph-posY: "365"
+        graph-groupLabelPos: bottom-center
+    pe5:
+      kind: nokia_sros
+      startup-config: configs/pe5/pe5.sros.partial.cfg
+      labels:
+        graph-posX: "855"
+        graph-posY: "385"
+        graph-groupLabelPos: bottom-center
+    ce1:
+      kind: linux
+      image: quay.io/frrouting/frr:8.4.1
+      binds:
+        - configs/ce1/frr.conf:/etc/frr/frr.conf
+        - configs/ce1/frr-daemons.cfg:/etc/frr/daemons
+      labels:
+        graph-posX: "685"
+        graph-posY: "335"
+        graph-groupLabelPos: bottom-center
+    ce2:
+      kind: linux
+      image: quay.io/frrouting/frr:8.4.1
+      binds:
+        - configs/ce2/frr.conf:/etc/frr/frr.conf
+        - configs/ce2/frr-daemons.cfg:/etc/frr/daemons
+      labels:
+        graph-posX: "795"
+        graph-posY: "305"
+        graph-groupLabelPos: bottom-center
+    ce3:
+      kind: linux
+      image: quay.io/frrouting/frr:8.4.1
+      binds:
+        - configs/ce3/frr.conf:/etc/frr/frr.conf
+        - configs/ce3/frr-daemons.cfg:/etc/frr/daemons
+      labels:
+        graph-posX: "915"
+        graph-posY: "345"
+        graph-groupLabelPos: bottom-center
+    p1:
+      kind: arista_ceos
+      image: ceos:4.33.1F
+      startup-config: configs/p1/p1.cfg
+      labels:
+        graph-posX: "795"
+        graph-posY: "465"
+        graph-groupLabelPos: bottom-center
+    p2:
+      kind: arista_ceos
+      image: ceos:4.33.1F
+      startup-config: configs/p2/p2.cfg
+      labels:
+        graph-posX: "735"
+        graph-posY: "465"
+        graph-groupLabelPos: bottom-center
+    p3:
+      kind: arista_ceos
+      image: ceos:4.33.1F
+      startup-config: configs/p3/p3.cfg
+      labels:
+        graph-posX: "855"
+        graph-posY: "465"
+        graph-groupLabelPos: bottom-center
+    rs1:
+      # route server #1
+      kind: linux
+      image: quay.io/openbgpd/openbgpd:7.9
+      binds:
+        - configs/rs1/openbgpd.conf:/etc/bgpd/bgpd.conf
+      exec:
+        - "ip address add dev eth1 192.168.0.4/24"
+      labels:
+        graph-posX: "665"
+        graph-posY: "535"
+        graph-groupLabelPos: bottom-center
+    rs2:
+      # route server #2
+      kind: linux
+      image: ghcr.io/srl-labs/bird:2.13
+      binds:
+        - configs/rs2/bird.conf:/etc/bird.conf
+      exec:
+        - "ip address add dev eth1 192.168.0.5/24"
+      labels:
+        graph-posX: "935"
+        graph-posY: "535"
+        graph-groupLabelPos: bottom-center
+
+  links:
+    - endpoints: [ "pe1:eth1", "p1:eth1" ]
+    - endpoints: [ "pe1:eth2", "p2:eth1" ]
+    - endpoints: [ "pe2:eth1", "p1:eth2" ]
+    - endpoints: [ "pe2:eth2", "p3:eth1" ]
+    - endpoints: [ "pe1:eth3", "pe2:eth3" ]
+    - endpoints: [ "pe3:eth1", "p1:eth3" ]
+    - endpoints: [ "pe3:eth2", "p2:eth2" ]
+    - endpoints: [ "pe4:eth1", "p1:eth4" ]
+    - endpoints: [ "pe4:eth2", "p2:eth3" ]
+    - endpoints: [ "pe4:eth3", "p3:eth2" ]
+    - endpoints: [ "pe5:eth1", "p1:eth5" ]
+    - endpoints: [ "pe5:eth2", "p3:eth3" ]
+    - endpoints: [ "pe1:eth4", "rs1:eth1" ]
+    - endpoints: [ "pe2:eth4", "rs2:eth1" ]
+    - endpoints: [ "pe3:eth3", "ce1:eth1" ]
+    - endpoints: [ "pe4:eth4", "ce2:eth1" ]
+    - endpoints: [ "pe5:eth3", "ce3:eth1" ]
