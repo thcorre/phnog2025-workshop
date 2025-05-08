@@ -10,6 +10,21 @@ Also not mandatory, however use of VScode editor would also be of great value to
 
 Need help, not a problem, pop your hand in the air and we will be there to guide you. 
 
+## Pre-requisites
+A list of workshop modules. Each module is a self-contained guide that can be followed independently, but it is recommended to go through them in order if you are new to Containerlab.
+
+Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/innog8/-/wikis/uploads/e805ff11f4e57183630ffdb6e50b7c7d/Containerlab_INNOG8_Workshop_v4.pdf) to follow along with the workshop.
+
+1. [Containerlab Installation](05-install/README.md) guide
+2. [Basics first](10-basics/README.md)
+3. [Dealing with startup config](15-startup/README.md)
+4. [VM-based nodes](20-vm/README.md)
+5. [Container registry](30-registry/README.md)
+6. [Packet capture](40-packet-capture/README.md)
+7. [A lab that has it ~all](45-streaming-telemetry/README.md)
+
+Did you love this workshop? Let us know in the comments of this [LinkedIn post](https://www.linkedin.com/posts/nokia-for-service-providers_visit-us-at-innog8-iispc-2025-activity-7325870778514575360-_lpa).
+
 ## Lab Environment
 For this workshop each group of participants will receive their own dedicated directory running a copy of the lab topology.
 
