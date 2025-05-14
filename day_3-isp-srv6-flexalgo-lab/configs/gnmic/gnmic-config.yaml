@@ -1,7 +1,7 @@
 username: admin
 password: admin
 insecure: true
-#port: 57400
+port: 57400
 timeout: 10s
 #skip-verify: true
 encoding: bytes 
@@ -9,11 +9,11 @@ encoding: bytes
 debug: true
 
 targets:
-  clab-srv6-flexalgo-R1:
-  clab-srv6-flexalgo-R2:
-  clab-srv6-flexalgo-R3:
-  clab-srv6-flexalgo-R4:
-  clab-srv6-flexalgo-R5:
+  R1:
+  R2:
+  R3:
+  R4:
+  R5:
 
 subscriptions:
   sros_if_stats:
