@@ -7,59 +7,59 @@
 set -eu
 
 startTraffic1-2() {
-    echo "starting traffic between clients 1 and 2"
-    docker exec client2 bash /config/iperf.sh
+    echo "starting traffic between clab-dc-${GROUP_ID}-clients 1 and 2"
+    docker exec clab-dc-${GROUP_ID}-client2 bash /config/iperf.sh
 }
 
 startTraffic1-3() {
-    echo "starting traffic between clients 1 and 3"
-    docker exec client3 bash /config/iperf.sh
+    echo "starting traffic between clab-dc-${GROUP_ID}-clients 1 and 3"
+    docker exec clab-dc-${GROUP_ID}-client3 bash /config/iperf.sh
 }
 
 startTraffic4-6() {
-    echo "starting traffic between clients 4 and 6"
-    docker exec client4 bash /config/iperf.sh
+    echo "starting traffic between clab-dc-${GROUP_ID}-clients 4 and 6"
+    docker exec clab-dc-${GROUP_ID}-client4 bash /config/iperf.sh
 }
 
 startTraffic5-6() {
-    echo "starting traffic between clients 5 and 6"
-    docker exec client5 bash /config/iperf.sh
+    echo "starting traffic between clab-dc-${GROUP_ID}-clients 5 and 6"
+    docker exec clab-dc-${GROUP_ID}-client5 bash /config/iperf.sh
 }
 
 startAll() {
-    echo "starting traffic on all clients"
-    docker exec client2 bash /config/iperf.sh
-    docker exec client3 bash /config/iperf.sh
-    docker exec client4 bash /config/iperf.sh
-    docker exec client5 bash /config/iperf.sh
+    echo "starting traffic on all clab-dc-${GROUP_ID}-clients"
+    docker exec clab-dc-${GROUP_ID}-client2 bash /config/iperf.sh
+    docker exec clab-dc-${GROUP_ID}-client3 bash /config/iperf.sh
+    docker exec clab-dc-${GROUP_ID}-client4 bash /config/iperf.sh
+    docker exec clab-dc-${GROUP_ID}-client5 bash /config/iperf.sh
 }
 
 stopTraffic1-2() {
-    echo "stopping traffic between clients 1 and 2"
-    docker exec client2 pkill iperf3
+    echo "stopping traffic between clab-dc-${GROUP_ID}-clients 1 and 2"
+    docker exec clab-dc-${GROUP_ID}-client2 pkill iperf3
 }
 
 stopTraffic1-3() {
-    echo "stopping traffic between clients 1 and 3"
-    docker exec client3 pkill iperf3
+    echo "stopping traffic between clab-dc-${GROUP_ID}-clients 1 and 3"
+    docker exec clab-dc-${GROUP_ID}-client3 pkill iperf3
 }
 
 stopTraffic4-6() {
-    echo "stopping traffic between clients 6 and 4"
-    docker exec client4 pkill iperf3
+    echo "stopping traffic between clab-dc-${GROUP_ID}-clients 6 and 4"
+    docker exec clab-dc-${GROUP_ID}-client4 pkill iperf3
 }
 
 stopTraffic5-6() {
-    echo "stopping traffic between clients 6 and 5"
-    docker exec client5 pkill iperf3
+    echo "stopping traffic between clab-dc-${GROUP_ID}-clients 6 and 5"
+    docker exec clab-dc-${GROUP_ID}-client5 pkill iperf3
 }
 
 stopAll() {
     echo "stopping all traffic"
-    docker exec client2 pkill iperf3
-    docker exec client3 pkill iperf3
-    docker exec client4 pkill iperf3
-    docker exec client5 pkill iperf3    
+    docker exec clab-dc-${GROUP_ID}-client2 pkill iperf3
+    docker exec clab-dc-${GROUP_ID}-client3 pkill iperf3
+    docker exec clab-dc-${GROUP_ID}-client4 pkill iperf3
+    docker exec clab-dc-${GROUP_ID}-client5 pkill iperf3    
 }
 
 # start traffic

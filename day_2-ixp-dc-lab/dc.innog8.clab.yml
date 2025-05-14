@@ -5,7 +5,7 @@
 name: dc-${GROUP_ID}
 
 mgmt:
-  network: dc
+  network: dc-${GROUP_ID}
   ipv4-subnet: 172.80.${GROUP_ID}0.0/24
   ipv6-subnet: 3fff:172:80:${GROUP_ID}0::/64
 
@@ -14,7 +14,7 @@ topology:
     kind: srl
 
   kinds:
-    vr-sros:
+    nokia_sros:
       image: registry.srlinux.dev/pub/vr-sros:24.10.R4
       license: /licenses/license_sr_r24.key
     srl:
@@ -26,13 +26,13 @@ topology:
   nodes:
     ### DCGWS ###
     dcgw1:
-      kind: vr-sros
+      kind: nokia_sros
       mgmt-ipv4: 172.80.${GROUP_ID}0.51
       mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::51
       type: sr-1
       startup-config: configs/dcgw/dcgw1.partial.cfg
     dcgw2:
-      kind: vr-sros
+      kind: nokia_sros
       mgmt-ipv4: 172.80.${GROUP_ID}0.52
       mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::52
       type: sr-1
