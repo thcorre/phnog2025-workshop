@@ -29,7 +29,7 @@ topology:
       image: ghcr.io/nokia/srlinux
     ceos:
       kind: arista_ceos
-      image: ceos:4.32.0F
+      image: ceos:4.33.1F
 
   links:
     - endpoints: [srl:e1-1, ceos:eth1]
