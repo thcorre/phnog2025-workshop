@@ -1,4 +1,4 @@
-name: peering
+name: peering-${GROUP_ID}
 
 topology:
   kinds:
