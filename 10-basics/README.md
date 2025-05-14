@@ -4,15 +4,7 @@ This workshop section introduces you to containerlab basics - topology file, ima
 
 ## Repository
 
-Clone the repository to your workshop host directory at INNOG8 tag:
-
-```bash
-cd ~
-git clone https://github.com/srl-labs/clab-workshop.git -b innog8
-cd clab-workshop/10-basics
-```
-
-The repo should be cloned and you should be in the `ac1-workshop` directory as per the output below:
+The repo should be cloned already and you should be in the `ac1-workshop` directory as per the output below:
 
 ```
 [*]─[rd-13]─[~/clab-workshop/10-basics]
