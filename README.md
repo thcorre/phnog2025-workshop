@@ -103,8 +103,8 @@ If you have broken something and would like to restore the state without extensi
 
 ``` 
 ~$ cd $HOME/
-~$ clab destroy innog8-workshop/day_1-ixp-peering-lab/peering.innog8.clab.yml
-~$ clab deploy innog8-workshop/day_1-ixp-peering-lab/peering.innog8.clab.yml
+~$ clab destroy innog8-workshop/day_1-ixp-peering-lab/peering.innog8.clab.yml --cleanup
+~$ clab deploy innog8-workshop/day_1-ixp-peering-lab/peering.innog8.clab.yml --reconfigure
 ```
 
 ### Credentials & Access
