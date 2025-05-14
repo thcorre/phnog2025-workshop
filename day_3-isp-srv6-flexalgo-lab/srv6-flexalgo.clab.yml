@@ -19,11 +19,15 @@ topology:
       kind: nokia_sros
       type: ixr-e2c
       startup-config: configs/R1/R1.cfg
+      mgmt-ipv4: 172.90.${GROUP_ID}0.1
+      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::1
 
     R2:
       kind: nokia_sros
       type: ixr-e2
       startup-config: configs/R2/R2.cfg
+      mgmt-ipv4: 172.90.${GROUP_ID}0.2
+      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::2
 
     R3:
       kind: nokia_sros
@@ -31,11 +35,15 @@ topology:
         cp: cpu=2 ram=4 chassis=ixr-r6d slot=A card=cpm-ixr-r6d/iom-ixr-r6d ___
         lc: cpu=4 ram=6 chassis=ixr-r6d slot=1 card=cpm-ixr-r6d/iom-ixr-r6d mda/1=m5-100g-qsfp28
       startup-config: configs/R3/R3.cfg
+      mgmt-ipv4: 172.90.${GROUP_ID}0.3
+      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::4
 
     R4:
       kind: nokia_sros
       type: sr-1
       startup-config: configs/R4/R4.cfg
+      mgmt-ipv4: 172.90.${GROUP_ID}0.4
+      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::4
 
     R5:
       kind: nokia_sros
@@ -43,18 +51,24 @@ topology:
         cp: cpu=2 ram=4 chassis=sr-1se slot=A card=cpm-1se ___
         lc: cpu=4 ram=6 max_nics=36 chassis=sr-1se slot=1 card=imm36-800g-qsfpdd mda/1=ms36-800g-qsfpdd
       startup-config: configs/R5/R5.cfg
+      mgmt-ipv4: 172.90.${GROUP_ID}0.5
+      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::5
 
     client1:
       kind: linux
       exec: 
         - ip address add 172.17.11.2/30 dev eth1
         - ip route add 172.17.44.0/30 via 172.17.11.1
+      mgmt-ipv4: 172.90.${GROUP_ID}0.6
+      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::6
 
     client2:
       kind: linux
       exec:
         - ip address add 172.17.44.2/30 dev eth1
         - ip route add 172.17.11.0/30 via 172.17.44.1
+      mgmt-ipv4: 172.90.${GROUP_ID}0.7
+      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::7
 
     ### TELEMETRY STACK ###
     gnmic:
@@ -63,8 +77,8 @@ topology:
       binds:
         - ./configs/gnmic/gnmic-config.yaml:/app/gnmic-config.yaml:ro
       cmd: '--config /app/gnmic-config.yaml --log subscribe'
-      ports:
-        - 98${GROUP_ID}4:9804
+      mgmt-ipv4: 172.90.${GROUP_ID}0.8
+      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::8
 
     prometheus:
       kind: linux
