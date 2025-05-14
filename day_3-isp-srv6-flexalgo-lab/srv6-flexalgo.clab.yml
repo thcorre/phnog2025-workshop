@@ -82,7 +82,7 @@ topology:
 
     prometheus:
       kind: linux
-      image: prom/prometheus:v3.3.1
+      image: prom/prometheus:v2.53.4
       binds:
         - ./configs/prometheus:/etc/prometheus/
       ports:
