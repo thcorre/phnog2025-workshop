@@ -64,7 +64,7 @@ topology:
         - ./configs/gnmic/gnmic-config.yaml:/app/gnmic-config.yaml:ro
       cmd: '--config /app/gnmic-config.yaml --log subscribe'
       ports:
-        - 9804:9804
+        - 98${GROUP_ID}4:9804
 
     prometheus:
       kind: linux
