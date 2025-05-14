@@ -4,11 +4,11 @@ This workshop section introduces you to containerlab basics - topology file, ima
 
 ## Repository
 
-Clone the repository to your workshop VM at DENOG16 tag:
+Clone the repository to your workshop host directory at INNOG8 tag:
 
 ```bash
 cd ~
-git clone https://github.com/srl-labs/clab-workshop.git -b denog16
+git clone https://github.com/srl-labs/clab-workshop.git -b innog8
 cd clab-workshop/10-basics
 ```
 
