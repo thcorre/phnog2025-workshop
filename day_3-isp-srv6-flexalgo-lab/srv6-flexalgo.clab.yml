@@ -8,7 +8,7 @@ topology:
   kinds:
     nokia_sros:
       image: registry.srlinux.dev/pub/vr-sros:23.10.R6
-      license: license-sros.txt
+      license: /licenses/license_sr_r23.key
     linux:
       image: ghcr.io/hellt/network-multitool
 
