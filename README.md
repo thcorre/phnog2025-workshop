@@ -40,13 +40,6 @@ If everything went according to plan, you should have received a physical piece 
 
 Please refer to the paper provided by the workshop session leaders. If nothing has been provided, not a problem, pop your hand in the air and an eager expert will be there to allocate one for you. 
 
-| Group ID | hostname instance |
-| --- | --- |
-| 1 | 1.innog8.net |
-| 2 | 2.innog8.net |
-| ... | ... |
-| **X** | **X**.innog8.net |
-
 ### SSH
 
 hostname: `refer to the paper provided `
