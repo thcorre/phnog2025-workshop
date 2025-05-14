@@ -93,6 +93,7 @@ topology:
         GF_AUTH_ANONYMOUS: "true"
         GF_SECURITY_ALLOW_EMBEDDING: "true"
         GF_DASHBOARDS_MIN_REFRESH_INTERVAL: 2s
+        GROUP_ID: ${GROUP_ID}
       group: "10"
 
   links:
