@@ -28,14 +28,14 @@ topology:
     ### DCGWS ###
     dcgw1:
       kind: vr-sros
-      mgmt-ipv4: 172.80.80.51
-      mgmt-ipv6: 3fff:172:80:80::51
+      mgmt-ipv4: 172.80.${GROUP_ID}0.51
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::51
       type: sr-1
       startup-config: configs/dcgw/dcgw1.partial.cfg
     dcgw2:
       kind: vr-sros
-      mgmt-ipv4: 172.80.80.52
-      mgmt-ipv6: 3fff:172:80:80::52
+      mgmt-ipv4: 172.80.${GROUP_ID}0.52
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::52
       type: sr-1
       startup-config: configs/dcgw/dcgw2.partial.cfg
 
@@ -44,40 +44,40 @@ topology:
       type: ixrd3l
       group: spine
       startup-config: configs/fabric/spine1.cfg
-      mgmt-ipv4: 172.80.80.21
-      mgmt-ipv6: 3fff:172:80:80::21
+      mgmt-ipv4: 172.80.${GROUP_ID}0.21
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::21
 
     spine2:
       type: ixrd3l
       group: spine
       startup-config: configs/fabric/spine2.cfg
-      mgmt-ipv4: 172.80.80.22
-      mgmt-ipv6: 3fff:172:80:80::22  
+      mgmt-ipv4: 172.80.${GROUP_ID}0.22
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::22  
  
     ### LEAFS ###
     leaf1:
       startup-config: configs/fabric/leaf1.cfg
-      mgmt-ipv4: 172.80.80.11
-      mgmt-ipv6: 3fff:172:80:80::11
+      mgmt-ipv4: 172.80.${GROUP_ID}0.11
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::11
       group: leaf
 
     leaf2:
       startup-config: configs/fabric/leaf2.cfg
-      mgmt-ipv4: 172.80.80.12
-      mgmt-ipv6: 3fff:172:80:80::12
+      mgmt-ipv4: 172.80.${GROUP_ID}0.12
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::12
       group: leaf
 
     leaf3:
       startup-config: configs/fabric/leaf3.cfg
-      mgmt-ipv4: 172.80.80.13
-      mgmt-ipv6: 3fff:172:80:80::13
+      mgmt-ipv4: 172.80.${GROUP_ID}0.13
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::13
       group: leaf
 
     ### CLIENTS ###
     client1:
       kind: linux
-      mgmt-ipv4: 172.80.80.31
-      mgmt-ipv6: 3fff:172:80:80::31
+      mgmt-ipv4: 172.80.${GROUP_ID}0.31
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::31
       exec:
         - ip address add 172.17.0.1/24 dev eth1
         - ip -6 address add 2002::172:17:0:1/96 dev eth1
@@ -86,8 +86,8 @@ topology:
       group: server
     client2:
       kind: linux
-      mgmt-ipv4: 172.80.80.32
-      mgmt-ipv6: 3fff:172:80:80::32
+      mgmt-ipv4: 172.80.${GROUP_ID}0.32
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::32
       binds:
         - configs/client2:/config
       exec:
@@ -96,8 +96,8 @@ topology:
       group: server
     client3:
       kind: linux
-      mgmt-ipv4: 172.80.80.33
-      mgmt-ipv6: 3fff:172:80:80::33
+      mgmt-ipv4: 172.80.${GROUP_ID}0.33
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::33
       binds:
         - configs/client3:/config
       exec:
@@ -106,8 +106,8 @@ topology:
       group: server
     client4:
       kind: linux
-      mgmt-ipv4: 172.80.80.34
-      mgmt-ipv6: 3fff:172:80:80::34
+      mgmt-ipv4: 172.80.${GROUP_ID}0.34
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::34
       binds:
         - configs/client4:/config
       exec:
@@ -117,8 +117,8 @@ topology:
       group: server
     client5:
       kind: linux
-      mgmt-ipv4: 172.80.80.35
-      mgmt-ipv6: 3fff:172:80:80::35
+      mgmt-ipv4: 172.80.${GROUP_ID}0.35
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::35
       binds:
         - configs/client5:/config
       exec:
@@ -128,8 +128,8 @@ topology:
       group: server
     client6:
       kind: linux
-      mgmt-ipv4: 172.80.80.36
-      mgmt-ipv6: 3fff:172:80:80::36
+      mgmt-ipv4: 172.80.${GROUP_ID}0.36
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::36
       exec:
         - ip address add 172.17.0.6/24 dev eth1
         - ip -6 address add 2002::172:17:0:6/96 dev eth1
@@ -140,8 +140,8 @@ topology:
     ### TELEMETRY STACK ###
     gnmic:
       kind: linux
-      mgmt-ipv4: 172.80.80.41
-      mgmt-ipv6: 3fff:172:80:80::41
+      mgmt-ipv4: 172.80.${GROUP_ID}0.41
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::41
       image: ghcr.io/openconfig/gnmic:0.41.0
       binds:
         - gnmic-config.yml:/gnmic-config.yml:ro
@@ -150,8 +150,8 @@ topology:
 
     prometheus:
       kind: linux
-      mgmt-ipv4: 172.80.80.42
-      mgmt-ipv6: 3fff:172:80:80::42
+      mgmt-ipv4: 172.80.${GROUP_ID}0.42
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::42
       image: prom/prometheus:v2.53.4
       binds:
         - configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
@@ -162,8 +162,8 @@ topology:
 
     grafana:
       kind: linux
-      mgmt-ipv4: 172.80.80.43
-      mgmt-ipv6: 3fff:172:80:80::43
+      mgmt-ipv4: 172.80.${GROUP_ID}0.43
+      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::43
       image: grafana/grafana:9.5.2
       binds:
         - configs/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
