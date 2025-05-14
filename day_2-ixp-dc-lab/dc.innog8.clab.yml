@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 name: dc-${GROUP_ID}
-prefix: ""
 
 mgmt:
   network: dc
