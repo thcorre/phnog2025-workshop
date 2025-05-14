@@ -17,7 +17,7 @@ topology:
   kinds:
     vr-sros:
       image: registry.srlinux.dev/pub/vr-sros:24.10.R4
-      license: ./license_sr.key
+      license: /licenses/license_sr_r24.key
     srl:
       image: ghcr.io/nokia/srlinux:24.10.4
       type: ixrd2l

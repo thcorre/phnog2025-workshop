@@ -4,7 +4,7 @@ topology:
   kinds:
     nokia_sros:
       image: registry.srlinux.dev/pub/vr-sros:24.10.R4
-      license: ./license_sr.key
+      license: /licenses/license_sr_r24.key
 
   nodes:
     pe1:
