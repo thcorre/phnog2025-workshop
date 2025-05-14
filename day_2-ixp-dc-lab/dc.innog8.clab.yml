@@ -2,7 +2,7 @@
 # Licensed under the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 
-name: dc
+name: dc-${GROUP_ID}
 prefix: ""
 
 mgmt:
@@ -157,7 +157,7 @@ topology:
         - configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       cmd: --config.file=/etc/prometheus/prometheus.yml
       ports:
-        - 9090:9090
+        - 909${GROUP_ID}:9090
       group: "10"
 
     grafana:
@@ -174,7 +174,7 @@ topology:
           - 8.8.8.8
           - 8.8.4.4
       ports:
-        - 3000:3000
+        - 300${GROUP_ID}:3000
       env:
         GF_INSTALL_PLUGINS: https://algenty.github.io/flowcharting-repository/archives/agenty-flowcharting-panel-1.0.0d.220606199-SNAPSHOT.zip;agenty-flowcharting-panel    
       group: "10"
