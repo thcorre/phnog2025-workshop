@@ -36,7 +36,7 @@ topology:
         lc: cpu=4 ram=6 chassis=ixr-r6d slot=1 card=cpm-ixr-r6d/iom-ixr-r6d mda/1=m5-100g-qsfp28
       startup-config: configs/R3/R3.cfg
       mgmt-ipv4: 172.90.${GROUP_ID}0.3
-      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::4
+      mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::3
 
     R4:
       kind: nokia_sros
