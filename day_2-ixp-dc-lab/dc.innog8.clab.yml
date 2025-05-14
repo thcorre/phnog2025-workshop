@@ -7,8 +7,8 @@ prefix: ""
 
 mgmt:
   network: dc
-  ipv4-subnet: 172.80.80.0/24
-  ipv6-subnet: 3fff:172:80:80::/64
+  ipv4-subnet: 172.80.${GROUP_ID}0.0/24
+  ipv6-subnet: 3fff:172:80:${GROUP_ID}0::/64
 
 topology:
   defaults:
