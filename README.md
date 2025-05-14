@@ -96,17 +96,15 @@ The above topology contains a number of functional blocks to help you in area's 
 
 ### Help! I've bricked my lab, how do I redeploy? 
 
-When accessing your workshop instance you'll see the innog8 directory is a git clone of this repository.
+When accessing your workshop Bare Metal you'll see the innog8 directory is a git clone of this repository.
 The labs covered in this workshops (powered by [containerlab](https://www.containerlab.dev)), are available for you to use.
 
-If you have broken something and would like to restore the state without extensively troubleshooting, you can destroy and redeploy the command via following `make` commands:
-
-> Note: we use containerlab under the hood, the Makefile is just a simple wrapper around it.
+If you have broken something and would like to restore the state without extensively troubleshooting, you can destroy and redeploy the command via following `clab` commands:
 
 ``` 
 ~$ cd $HOME/
-~$ make destroy -C /home/nokia/innog8/clab/
-~$ make deploy -C /home/nokia/innog8/clab/
+~$ clab destroy innog8-workshop/day_1-ixp-peering-lab/peering.innog8.clab.yml
+~$ clab deploy innog8-workshop/day_1-ixp-peering-lab/peering.innog8.clab.yml
 ```
 
 ### Credentials & Access
