@@ -14,11 +14,7 @@ In this workshop we make use of an open-source registry called [Harbor](https://
 
 The registry has been already deployed in the workshop environment, but it is quite easy to deploy yourself in your own organization. It is a single docker compose stack that can be deployed in a few minutes.
 
-The Harbor registry offers a neat Web UI to browse the registry contents, manage users and tune access control. You can log in to the registry UI like this:
-
-<https://registry-d16.srexperts.net>
-
-using the `admin` user and the password available in your workshop handout.
+The Harbor registry offers a neat Web UI to browse the registry contents, manage users and tune access control. You can log in to the registry UI through the public IP address of the Bare Metal host (porovided during the workshop) using the `admin` user and the password available in your workshop handout.
 
 When logged in as `admin` you can created users, repositories, browse the registry contents and many more. Managing the harbor registry is out of the scope of this workshop.
 
@@ -33,7 +29,7 @@ To be able to push and pull the images from the workshop's registry, you need to
 ```bash
 # username: admin
 # password: as per your workshop handout
-docker login registry-d16.srexperts.net
+docker login {public_IP}
 ```
 
 ### 2 Listing local images
@@ -47,8 +43,8 @@ docker images
 On your system you will see a list of images, among which you will see:
 
 ```
-REPOSITORY              TAG         IMAGE ID       CREATED       SIZE
-vrnetlab/nokia_sros     24.7.R1     d45128fc2914   2 hours ago   889MB
+REPOSITORY              TAG          IMAGE ID       CREATED       SIZE
+vrnetlab/nokia_sros     24.10.R4     d45128fc2914   2 hours ago   889MB
 ```
 
 This is the image that we built before and that we want to push to the registry so that next time we want to use it we won't have to build it again.
@@ -56,7 +52,7 @@ This is the image that we built before and that we want to push to the registry 
 The image name consists of two parts:
 
 - `vrnetlab/nokia_sros` - the repository name
-- `24.7.R1` - the tag
+- `24.10.R4` - the tag
 
 Catenating these two parts together we get the full name of the image that we want to push to the registry.
 
@@ -75,8 +71,8 @@ Since everyone would want to push their own image to the registry we will need t
 ```bash
 # note the appended -1 at the end of the tag
 skopeo copy \
-docker-daemon:vrnetlab/nokia_sros:24.7.R1 \
-docker://registry-d16.srexperts.net/library/nokia_sros:24.7.R1-1
+docker-daemon:vrnetlab/nokia_sros:24.10.R4 \
+docker://{public_IP}/library/nokia_sros:24.10.R4
 ```
 
 ## Listing images from the registry
@@ -90,7 +86,7 @@ If you want to get the list of available repositories/tags in the registry, you 
 Listing available repositories:
 
 ```bash
- curl -s -u 'admin:d16ClabW$' https://registry-d16.srexperts.net/v2/_catalog | jq
+ curl -s -u 'admin:{password}' https://{public_IP}/v2/_catalog | jq
 {
   "repositories": [
     "admin/nokia_sros",
@@ -102,11 +98,11 @@ Listing available repositories:
 Listing available tags for a given repository:
 
 ```bash
-skopeo list-tags docker://registry-d16.srexperts.net/library/nokia_sros
+skopeo list-tags docker://{public_IP}/library/nokia_sros
 {
-    "Repository": "registry-d16.srexperts.net/library/nokia_sros",
+    "Repository": "{public_IP}/library/nokia_sros",
     "Tags": [
-        "24.7.R1-1"
+        "24.10.R4"
     ]
 }
 ```
@@ -122,7 +118,7 @@ topology:
     sros:
       kind: nokia_sros
 -     image: vrnetlab/nokia_sros:24.7.R1
-+     image: registry-d16.srexperts.net/library/nokia_sros:24.7.R1-1
++     image: {public_IP}/library/nokia_sros:24.7.R1-1
       license: ~/images/sros-24.lic
 
     c8000v:
