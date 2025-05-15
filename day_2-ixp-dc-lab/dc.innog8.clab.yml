@@ -11,13 +11,13 @@ mgmt:
 
 topology:
   defaults:
-    kind: srl
+    kind: nokia_srlinux
 
   kinds:
     nokia_sros:
       image: registry.srlinux.dev/pub/vr-sros:24.10.R4
       license: /licenses/license_sr_r24.key
-    srl:
+    nokia_srlinux:
       image: ghcr.io/nokia/srlinux:24.10.4
       type: ixrd2l
     linux:
