@@ -90,8 +90,17 @@ topology:
       binds:
         - configs/client2:/config
       exec:
-        - ip address add 172.17.0.2/24 dev eth1
-        - ip -6 address add 2002::172:17:0:2/96 dev eth1
+        - ip link add bond0 type bond
+        - ip link set bond0 down
+        - ip link set bond0 type bond miimon 100 mode 4
+        - ip link set eth1 down
+        - ip link set eth2 down
+        - ip link set eth1 master bond0
+        - ip link set eth2 master bond0
+        - ip address add 172.17.0.2/24 dev bond0
+        - ip -6 address add 2002::172:17:0:2/96 dev bond0
+        - ip link set bond0  type bond xmit_hash_policy layer3+4 
+        - ip link set bond0 up
       group: server
     client3:
       kind: linux
@@ -175,7 +184,8 @@ topology:
       ports:
         - 300${GROUP_ID}:3000
       env:
-        GF_INSTALL_PLUGINS: https://algenty.github.io/flowcharting-repository/archives/agenty-flowcharting-panel-1.0.0d.220606199-SNAPSHOT.zip;agenty-flowcharting-panel    
+        GF_INSTALL_PLUGINS: https://algenty.github.io/flowcharting-repository/archives/agenty-flowcharting-panel-1.0.0d.220606199-SNAPSHOT.zip;agenty-flowcharting-panel
+        HTTPS_PROXY: "http://10.158.100.6:8080"    
       group: "10"
 
   links:
@@ -186,7 +196,9 @@ topology:
     - endpoints: ["spine2:e1-2", "leaf2:e1-50"]
     - endpoints: ["spine2:e1-3", "leaf3:e1-50"]
     - endpoints: ["leaf1:e1-1", "client1:eth1"]
-    - endpoints: ["leaf2:e1-1", "client2:eth1"]
+    - endpoints: ["leaf1:e1-2", "client2:eth1"]
+    - endpoints: ["leaf2:e1-1", "client2:eth2"]
+    - endpoints: ["leaf2:e1-2", "client6:eth1"]
     - endpoints: ["leaf3:e1-1", "client3:eth1"]
     - endpoints: ["dcgw1:eth1", "spine1:e1-31"]
     - endpoints: ["dcgw2:eth1", "spine1:e1-32"]
@@ -194,4 +206,3 @@ topology:
     - endpoints: ["dcgw2:eth2", "spine2:e1-32"]
     - endpoints: ["client4:eth1", "dcgw1:eth3"]
     - endpoints: ["client5:eth1", "dcgw2:eth3"]
-    - endpoints: ["leaf2:e1-2", "client6:eth1"]
