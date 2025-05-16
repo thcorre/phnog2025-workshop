@@ -60,8 +60,8 @@ topology:
   nodes:
     sros:
       kind: nokia_sros
--     image: vrnetlab/nokia_sros:24.7.R1
-+     image: {public_IP}/library/nokia_sros:24.7.R1-1
+-     image: vrnetlab/nokia_sros:24.10.R4
++     image: {public_IP}/library/nokia_sros:24.10.R4
       license: ~/images/sros-24.lic
 
     c8000v:
