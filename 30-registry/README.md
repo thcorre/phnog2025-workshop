@@ -24,7 +24,7 @@ Once the image is copied, you can see it in the registry UI.
 
 ![pic](https://gitlab.com/rdodin/pics/-/wikis/uploads/3f3d08696dd6bb83cf6e223a5f8f6c39/image.png)
 
-If you want to get the list of available repositories/tags in the registry, you can use registry API and skopeo.
+If you want to get the list of available repositories/tags in the registry, you can use registry API.
 
 Listing available repositories:
 
@@ -35,18 +35,6 @@ Listing available repositories:
     "admin/nokia_sros",
     "library/nokia_sros"
   ]
-}
-```
-
-Listing available tags for a given repository:
-
-```bash
-skopeo list-tags docker://{public_IP}/library/nokia_sros
-{
-    "Repository": "{public_IP}/library/nokia_sros",
-    "Tags": [
-        "24.10.R4"
-    ]
 }
 ```
 
