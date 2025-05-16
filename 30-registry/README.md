@@ -20,7 +20,7 @@ When logged in as `admin` you can created users, repositories, browse the regist
 
 ## Listing images from the registry
 
-Once the image is copied, you can see it in the registry UI.
+You can see the images in the registry UI.
 
 ![pic](https://gitlab.com/rdodin/pics/-/wikis/uploads/3f3d08696dd6bb83cf6e223a5f8f6c39/image.png)
 
