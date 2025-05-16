@@ -18,63 +18,6 @@ The Harbor registry offers a neat Web UI to browse the registry contents, manage
 
 When logged in as `admin` you can created users, repositories, browse the registry contents and many more. Managing the harbor registry is out of the scope of this workshop.
 
-## Pushing images to the registry
-
-We will push one of the images that we've built in the previous section to the registry effectively saving it and making it available and reusable to other users who have access to this registry.
-
-### 1 Logging in to the registry
-
-To be able to push and pull the images from the workshop's registry, you need to login to the registry.
-
-```bash
-# username: admin
-# password: as per your workshop handout
-docker login {public_IP}
-```
-
-### 2 Listing local images
-
-First, we need to identify the name of the image that we want to push to the registry. By listing the images in the local image store we can reliably identify the name of the image that we want to push.
-
-```
-docker images
-```
-
-On your system you will see a list of images, among which you will see:
-
-```
-REPOSITORY              TAG          IMAGE ID       CREATED       SIZE
-vrnetlab/nokia_sros     24.10.R4     d45128fc2914   2 hours ago   889MB
-```
-
-This is the image that we built before and that we want to push to the registry so that next time we want to use it we won't have to build it again.
-
-The image name consists of two parts:
-
-- `vrnetlab/nokia_sros` - the repository name
-- `24.10.R4` - the tag
-
-Catenating these two parts together we get the full name of the image that we want to push to the registry.
-
-### 3 Pushing the image to the registry
-
-Now that we know the name of the image that we want to push to the registry, we can push it. Usually you will see a sequence of `docker tag` and `docker push` commands being executed, but we are cool kids here so we will do it in one go.
-
-Using the skopeo tool - <https://github.com/containers/skopeo> - we can push the image to the registry in one go. The command to use has the following format:
-
-```
-skopeo copy docker-deamon://<local image name> docker://<registry>/<repository>:<tag>
-```
-
-Since everyone would want to push their own image to the registry we will need to append a user id to the tag name so that you won't overwrite each other's images. Like the below command pushes the image to the user with ID=1:
-
-```bash
-# note the appended -1 at the end of the tag
-skopeo copy \
-docker-daemon:vrnetlab/nokia_sros:24.10.R4 \
-docker://{public_IP}/library/nokia_sros:24.10.R4
-```
-
 ## Listing images from the registry
 
 Once the image is copied, you can see it in the registry UI.
