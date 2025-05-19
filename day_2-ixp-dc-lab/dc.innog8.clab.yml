@@ -185,7 +185,6 @@ topology:
         - 300${GROUP_ID}:3000
       env:
         GF_INSTALL_PLUGINS: https://algenty.github.io/flowcharting-repository/archives/agenty-flowcharting-panel-1.0.0d.220606199-SNAPSHOT.zip;agenty-flowcharting-panel
-        HTTPS_PROXY: "http://10.158.100.6:8080"    
       group: "10"
 
   links:
