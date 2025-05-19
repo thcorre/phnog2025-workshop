@@ -32,8 +32,8 @@ Listing available repositories:
  curl -s -u 'admin:{password}' https://{public_IP}/v2/_catalog | jq
 {
   "repositories": [
-    "admin/nokia_sros",
-    "library/nokia_sros"
+    "admin/nokia_srlinux",
+    "library/nokia_srlinux"
   ]
 }
 ```
@@ -46,18 +46,17 @@ The whole point of pushing the image to the registry is to be able to use it in 
 name: vm
 topology:
   nodes:
-    sros:
-      kind: nokia_sros
--     image: vrnetlab/nokia_sros:24.10.R4
-+     image: {public_IP}/library/nokia_sros:24.10.R4
-      license: ~/images/sros-24.lic
-
     sonic:
       kind: sonic-vm
       image: {public_IP}/library/sonic-vm:202405
 
+    srl:
+      kind: nokia_srlinux
+-     image: ghcr.io/nokia/srlinux:24.10.4
++     image: {public_IP}/library/nokia_srlinux:24.10.4
+
   links:
-    - endpoints: [sros:eth1, sonic:eth1]
+    - endpoints: ["sonic:eth1", "srl:e1-1"]
 ```
 
 Not only this gives us an easy way to share images with others, but also it enables stronger reproducibility of the lab, as the users of our lab would use exactly the same image that we built.
