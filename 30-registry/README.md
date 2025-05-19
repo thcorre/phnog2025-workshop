@@ -48,7 +48,7 @@ topology:
   nodes:
     sonic:
       kind: sonic-vm
-      image: {public_IP}/library/sonic-vm:202405
+      image: {public_IP}/library/sonic-vm:202411
 
     srl:
       kind: nokia_srlinux
