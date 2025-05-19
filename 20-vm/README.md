@@ -11,23 +11,23 @@ cd ~/vrnetlab
 
 ## Building SONiC container image
 
-SONiC vs image (downloaded from [sonic.software](https://sonic.software/)) is located at `~/images/sonic-vs-202405.qcow2` on your VM and should be copied to the `~/vrnetlab/sonic/` directory before building the container image.
+SONiC image (downloaded from [sonic.software](https://sonic.software/)) is located at `~/images/sonic-vm-202405.qcow2` on your host and should be copied to the `~/vrnetlab/sonic/` directory before building the container image.
 
 ```bash
-cp ~/images/sonic-vs-202405.qcow2 ~/vrnetlab/sonic/
+cp ~/images/sonic-vm-202405.qcow2 ~/vrnetlab/sonic/
 ```
 
 Once copied, we can enter in the `~/vrnetlab/sonic` image and build the container image:
 
 ```bash
-cd ~/vrnetlab/sonic && make
+cd ~/vrnetlab/sonic-vm && make
 ```
 
-The resulting image will be tagged as `vrnetlab/sonic_sonic-vs:202405`. This can be verified using `docker images` command.
+The resulting image will be tagged as `vrnetlab/sonic-vm:202405`. This can be verified using `docker images` command.
 
 ```bash
 REPOSITORY                TAG       IMAGE ID       CREATED          SIZE
-vrnetlab/sonic_sonic-vs   202405    33b73b1dadc4   5 minutes ago    6.37GB
+vrnetlab/sonic-vm         202405    33b73b1dadc4   5 minutes ago    6.37GB
 ceos                      4.33.0F   927c8cd41224   53 minutes ago   2.46GB
 ghcr.io/nokia/srlinux     latest    eb2a823cd8ce   8 days ago       2.35GB
 hello-world               latest    d2c94e258dcb   18 months ago    13.3kB
@@ -40,7 +40,7 @@ With the sonic image built, we can proceed with the lab deployment. We will depl
 First, let's switch back to the lab directory:
 
 ```bash
-cd ~/ac2-clab/20-vm
+cd ~/innog8-workshop/20-vm
 ```
 
 Now lets deploy the lab:
