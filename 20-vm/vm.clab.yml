@@ -10,4 +10,4 @@ topology:
       image: ghcr.io/nokia/srlinux:24.10.4
 
   links:
-    - endpoints: ["sonic:eth1", "srl:e1-1"]
+    - endpoints: [sonic:eth1, srl:e1-1]
