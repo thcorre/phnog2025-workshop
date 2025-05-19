@@ -52,12 +52,12 @@ topology:
 +     image: {public_IP}/library/nokia_sros:24.10.R4
       license: ~/images/sros-24.lic
 
-    c8000v:
-      kind: cisco_c8000v
-      image: vrnetlab/cisco_c8000v:17.11.01a
+    sonic:
+      kind: sonic-vm
+      image: {public_IP}/library/sonic-vm:202405
 
   links:
-    - endpoints: [sros:eth1, c8000v:eth1]
+    - endpoints: [sros:eth1, sonic:eth1]
 ```
 
 Not only this gives us an easy way to share images with others, but also it enables stronger reproducibility of the lab, as the users of our lab would use exactly the same image that we built.
