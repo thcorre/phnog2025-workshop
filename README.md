@@ -80,11 +80,12 @@ The above topology contains a number of functional blocks to help you in area's 
 - IXP Peering lab:
   - SR-MPLS (Dual-Stack ISIS)
   - MP-BGP (SAFIs with IPv6 next-hop)
-  - 5x P-nodes (FRR, cEOS)
-  - 5x PE-nodes (SR OS)
-  - 2x route-reflectors (cEOS)
-  - a Transit/Peering setup with RPKI available on PE1
-  - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic. 
+  - 3x P-nodes (cEOS)
+  - 5x PE-nodes (SR OS) using EVPN as the IXP L2 network
+  - 2x Route Servers (BIRD, OpenBGPd) connected to PE1 and PE2
+  - 3x CE clients (FRR) which connect to their respective PEs and peer with the 2 Route Servers.
+  - Optional: a RPKI validator (Routinator) available through PE1
+
 - IXP DC lab:
   - a CLOS model:
     - 2x spines (spine1|spine2) and 3 leaf switches (leaf1|leaf2|leaf3)
@@ -92,6 +93,7 @@ The above topology contains a number of functional blocks to help you in area's 
   - DCGW Integration in the DC (dcgw1|dcgw2)
   - a fully working telemetry stack (gNMIc/prometheus/grafana)
   - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic. 
+
 - ISP SRv6 FlexAlgo lab:
 
 ### Help! I've bricked my lab, how do I redeploy? 
