@@ -10,7 +10,7 @@ Whether you choose to use one of the public registries or a run a private one, t
 
 ## Harbor registry
 
-In this workshop we make use of an open-source registry called [Harbor](https://goharbor.io/). \n
+In this workshop we make use of an open-source registry called [Harbor](https://goharbor.io/). '\'
 It is a CNCF graduated project and is a great choice for a private registry.
 
 The registry has been already deployed in the workshop environment, but it is quite easy to deploy yourself in your own organization. It is a single docker compose stack that can be deployed in a few minutes.
