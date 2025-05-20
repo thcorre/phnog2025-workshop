@@ -29,13 +29,7 @@ If you want to get the list of available repositories/tags in the registry, you 
 Listing available repositories:
 
 ```bash
- curl -s -u 'admin:{password}' https://{public_IP}/v2/_catalog | jq
-{
-  "repositories": [
-    "admin/nokia_srlinux",
-    "library/nokia_srlinux"
-  ]
-}
+curl -X 'GET'  'https://{public_IP}/api/v2.0/repositories?page=1&page_size=10'  -H 'accept: application/json' -k
 ```
 
 ## Using images from the registry
