@@ -19,7 +19,7 @@ It captures the traffic from SR OS (`clab-vm-sros`) port `eth1` (`1/1/1`) runnin
 Windows/WSL:
 
 ```bash
-ssh user@d1.srexperts.net \
+ssh root@{public_IP} \
 "ip netns exec clab-vm-sros tcpdump -U -nni eth1 -w -" | \
 /mnt/c/Program\ Files/Wireshark/wireshark.exe -k -i -
 ```
@@ -27,7 +27,7 @@ ssh user@d1.srexperts.net \
 macOS:
 
 ```
-ssh user@d1.srexperts.net \
+ssh root@{public_IP} \
 "ip netns exec clab-vm-sros tcpdump -U -nni eth1 -w -" | \
 /Applications/Wireshark.app/Contents/MacOS/Wireshark  -k -i -
 ```
@@ -86,8 +86,8 @@ The command above will open two Finder windows, one with the `cshargextcap` bina
 
 ### Web UI
 
-To access the Edgeshark UI, open a browser and navigate to the following URL (substitute the hostname with your assigned VM):
+To access the Edgeshark UI, open a browser and navigate to the following URL:
 
-<http://d{ID}.srexperts.net:5001>
+<http://{public_IP}:5001>
 
 Note, the http schema is important, since https is not enabled.
