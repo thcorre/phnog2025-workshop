@@ -10,34 +10,39 @@ topology:
     pe1:
       kind: nokia_sros
       startup-config: configs/pe1/pe1.partial.cfg
+#      startup-config: configs/pe1/pe1.full.cfg
       labels:
         graph-posX: "735"
         graph-posY: "535"
         graph-groupLabelPos: bottom-center
     pe2:
       kind: nokia_sros
-      startup-config: configs/pe2/pe2.sros.partial.cfg
+      startup-config: configs/pe2/pe2.partial.cfg
+#      startup-config: configs/pe2/pe2.full.cfg
       labels:
         graph-posX: "855"
         graph-posY: "535"
         graph-groupLabelPos: bottom-center
     pe3:
       kind: nokia_sros
-      startup-config: configs/pe3/pe3.sros.partial.cfg
+      startup-config: configs/pe3/pe3.partial.cfg
+#      startup-config: configs/pe3/pe3.full.cfg
       labels:
         graph-posX: "735"
         graph-posY: "385"
         graph-groupLabelPos: bottom-center
     pe4:
       kind: nokia_sros
-      startup-config: configs/pe4/pe4.sros.partial.cfg
+      startup-config: configs/pe4/pe4.partial.cfg
+ #     startup-config: configs/pe4/pe4.full.cfg
       labels:
         graph-posX: "795"
         graph-posY: "365"
         graph-groupLabelPos: bottom-center
     pe5:
       kind: nokia_sros
-      startup-config: configs/pe5/pe5.sros.partial.cfg
+      startup-config: configs/pe5/pe5.partial.cfg
+#      startup-config: configs/pe5/pe5.full.cfg
       labels:
         graph-posX: "855"
         graph-posY: "385"
