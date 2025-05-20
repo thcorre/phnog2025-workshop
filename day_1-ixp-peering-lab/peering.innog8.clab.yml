@@ -9,7 +9,7 @@ topology:
   nodes:
     pe1:
       kind: nokia_sros
-      startup-config: configs/pe1/pe1.sros.partial.cfg
+      startup-config: configs/pe1/pe1.partial.cfg
       labels:
         graph-posX: "735"
         graph-posY: "535"
