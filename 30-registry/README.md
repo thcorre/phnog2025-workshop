@@ -10,7 +10,8 @@ Whether you choose to use one of the public registries or a run a private one, t
 
 ## Harbor registry
 
-In this workshop we make use of an open-source registry called [Harbor](https://goharbor.io/). It is a CNCF graduated project and is a great choice for a private registry.
+In this workshop we make use of an open-source registry called [Harbor](https://goharbor.io/).
+It is a CNCF graduated project and is a great choice for a private registry.
 
 The registry has been already deployed in the workshop environment, but it is quite easy to deploy yourself in your own organization. It is a single docker compose stack that can be deployed in a few minutes.
 
@@ -29,13 +30,7 @@ If you want to get the list of available repositories/tags in the registry, you 
 Listing available repositories:
 
 ```bash
- curl -s -u 'admin:{password}' https://{public_IP}/v2/_catalog | jq
-{
-  "repositories": [
-    "admin/nokia_srlinux",
-    "library/nokia_srlinux"
-  ]
-}
+curl -X 'GET'  'https://{public_IP}/api/v2.0/repositories?page=1&page_size=10'  -H 'accept: application/json' -k
 ```
 
 ## Using images from the registry
@@ -48,7 +43,7 @@ topology:
   nodes:
     sonic:
       kind: sonic-vm
-      image: {public_IP}/library/sonic-vm:202405
+      image: {public_IP}/library/sonic-vm:202411
 
     srl:
       kind: nokia_srlinux

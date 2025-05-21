@@ -9,35 +9,40 @@ topology:
   nodes:
     pe1:
       kind: nokia_sros
-      startup-config: configs/pe1/pe1.sros.partial.cfg
+      startup-config: configs/pe1/pe1.initial.partial.cfg
+#      startup-config: configs/pe1/pe1.final.partial.cfg
       labels:
         graph-posX: "735"
         graph-posY: "535"
         graph-groupLabelPos: bottom-center
     pe2:
       kind: nokia_sros
-      startup-config: configs/pe2/pe2.sros.partial.cfg
+      startup-config: configs/pe2/pe2.initial.partial.cfg
+#      startup-config: configs/pe2/pe2.final.partial.cfg
       labels:
         graph-posX: "855"
         graph-posY: "535"
         graph-groupLabelPos: bottom-center
     pe3:
       kind: nokia_sros
-      startup-config: configs/pe3/pe3.sros.partial.cfg
+      startup-config: configs/pe3/pe3.initial.partial.cfg
+#      startup-config: configs/pe3/pe3.final.partial.cfg
       labels:
         graph-posX: "735"
         graph-posY: "385"
         graph-groupLabelPos: bottom-center
     pe4:
       kind: nokia_sros
-      startup-config: configs/pe4/pe4.sros.partial.cfg
+      startup-config: configs/pe4/pe4.initial.partial.cfg
+ #     startup-config: configs/pe4/pe4.final.partial.cfg
       labels:
         graph-posX: "795"
         graph-posY: "365"
         graph-groupLabelPos: bottom-center
     pe5:
       kind: nokia_sros
-      startup-config: configs/pe5/pe5.sros.partial.cfg
+      startup-config: configs/pe5/pe5.initial.partial.cfg
+#      startup-config: configs/pe5/pe5.final.partial.cfg
       labels:
         graph-posX: "855"
         graph-posY: "385"
@@ -83,7 +88,7 @@ topology:
     p2:
       kind: arista_ceos
       image: ceos:4.33.1F
-      startup-config: configs/p2/p2.cfg
+#      startup-config: configs/p2/p2.cfg
       labels:
         graph-posX: "735"
         graph-posY: "465"
@@ -91,7 +96,7 @@ topology:
     p3:
       kind: arista_ceos
       image: ceos:4.33.1F
-      startup-config: configs/p3/p3.cfg
+#      startup-config: configs/p3/p3.cfg
       labels:
         graph-posX: "855"
         graph-posY: "465"
@@ -120,6 +125,14 @@ topology:
         graph-posX: "935"
         graph-posY: "535"
         graph-groupLabelPos: bottom-center
+    rpki:
+      # rpki validator
+      kind: linux
+      image: nlnetlabs/routinator
+      ports:
+        - 8323:8323      
+      exec:
+        - "ip address add dev eth1 192.168.0.254/24"
 
   links:
     - endpoints: [ "pe1:eth1", "p1:eth1" ]
