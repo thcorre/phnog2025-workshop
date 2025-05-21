@@ -88,7 +88,7 @@ topology:
     p2:
       kind: arista_ceos
       image: ceos:4.33.1F
-      startup-config: configs/p2/p2.cfg
+#      startup-config: configs/p2/p2.cfg
       labels:
         graph-posX: "735"
         graph-posY: "465"
@@ -96,7 +96,7 @@ topology:
     p3:
       kind: arista_ceos
       image: ceos:4.33.1F
-      startup-config: configs/p3/p3.cfg
+#      startup-config: configs/p3/p3.cfg
       labels:
         graph-posX: "855"
         graph-posY: "465"
@@ -125,6 +125,14 @@ topology:
         graph-posX: "935"
         graph-posY: "535"
         graph-groupLabelPos: bottom-center
+    rpki:
+      # rpki validator
+      kind: linux
+      image: nlnetlabs/routinator
+      ports:
+        - 80:8323      
+      exec:
+        - "ip address add dev eth1 192.168.0.254/24"
 
   links:
     - endpoints: [ "pe1:eth1", "p1:eth1" ]
