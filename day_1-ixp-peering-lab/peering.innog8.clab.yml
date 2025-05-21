@@ -26,7 +26,7 @@ topology:
     pe3:
       kind: nokia_sros
       startup-config: configs/pe3/pe3.partial.cfg
-#      startup-config: configs/pe3/pe3.full.cfg
+#      startup-config: configs/pe3/pe3.final.partial.cfg
       labels:
         graph-posX: "735"
         graph-posY: "385"
