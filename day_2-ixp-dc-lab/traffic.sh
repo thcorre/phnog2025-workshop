@@ -6,23 +6,23 @@
 
 set -eu
 
-startTraffic1-2() {
-    echo "starting traffic between clab-dc-${GROUP_ID}-clients 1 and 2"
+startTraffic2-1() {
+    echo "starting traffic from clab-dc-${GROUP_ID}-client 2 to 1"
     docker exec clab-dc-${GROUP_ID}-client2 bash /config/iperf.sh
 }
 
-startTraffic1-3() {
-    echo "starting traffic between clab-dc-${GROUP_ID}-clients 1 and 3"
+startTraffic3-1() {
+    echo "starting traffic from clab-dc-${GROUP_ID}-clients 3 and 1"
     docker exec clab-dc-${GROUP_ID}-client3 bash /config/iperf.sh
 }
 
 startTraffic4-6() {
-    echo "starting traffic between clab-dc-${GROUP_ID}-clients 4 and 6"
+    echo "starting traffic from clab-dc-${GROUP_ID}-client 4 to 6"
     docker exec clab-dc-${GROUP_ID}-client4 bash /config/iperf.sh
 }
 
 startTraffic5-6() {
-    echo "starting traffic between clab-dc-${GROUP_ID}-clients 5 and 6"
+    echo "starting traffic from clab-dc-${GROUP_ID}-client 5 to 6"
     docker exec clab-dc-${GROUP_ID}-client5 bash /config/iperf.sh
 }
 
@@ -34,12 +34,12 @@ startAll() {
     docker exec clab-dc-${GROUP_ID}-client5 bash /config/iperf.sh
 }
 
-stopTraffic1-2() {
+stopTraffic2-1() {
     echo "stopping traffic between clab-dc-${GROUP_ID}-clients 1 and 2"
     docker exec clab-dc-${GROUP_ID}-client2 pkill iperf3
 }
 
-stopTraffic1-3() {
+stopTraffic3-1() {
     echo "stopping traffic between clab-dc-${GROUP_ID}-clients 1 and 3"
     docker exec clab-dc-${GROUP_ID}-client3 pkill iperf3
 }
@@ -64,11 +64,11 @@ stopAll() {
 
 # start traffic
 if [ $1 == "start" ]; then
-    if [ $2 == "1-2" ]; then
-        startTraffic1-2
+    if [ $2 == "2-1" ]; then
+        startTraffic2-1
     fi
-    if [ $2 == "1-3" ]; then
-        startTraffic1-3
+    if [ $2 == "3-1" ]; then
+        startTraffic3-1
     fi
     if [ $2 == "4-6" ]; then
         startTraffic4-6
@@ -83,10 +83,10 @@ fi
 
 if [ $1 == "stop" ]; then
     if [ $2 == "1-2" ]; then
-        stopTraffic1-2
+        stopTraffic2-1
     fi
     if [ $2 == "1-3" ]; then
-        stopTraffic1-3
+        stopTraffic3-1
     fi
     if [ $2 == "4-6" ]; then
         stopTraffic4-6
