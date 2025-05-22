@@ -1,4 +1,4 @@
-# Nokia SR OS as PE in an IXP infrastructure Configuration
+# Nokia SR OS as PE in an IXP infrastructure - Configuration
 
 This page provides the basic step-by-step configuration required to set up a Nokia 7750 Service Router as a PE in a modern IXP environment. All the required feature sets for a peering router are covered here with configuration and show examples. Most sections also provide links to Nokia documentation for further reading.
 
@@ -19,13 +19,13 @@ The card and mda types depend on the variant of the 7750 SR in use. The equipped
 ```
 /configure card 1 card-type iom-1
 /configure card 1 level he
-/configure card 1 mda 1 mda-type me6-100gb-qsfp28
+/configure card 1 mda 1 mda-type me12-100gb-qsfp28
 ```
 
 The state of the card and MDA can be viewed using the below show command:
 
 ```
-A:admin@SR1# show card state
+A:admin@pe1# show card state
 
 ===============================================================================
 Card State
@@ -34,7 +34,7 @@ Slot/  Provisioned Type                  Admin Operational   Num   Num Comments
 Id         Equipped Type (if different)  State State         Ports MDA
 -------------------------------------------------------------------------------
 1      iom-1:he                          up    up                  2
-1/1    me6-100gb-qsfp28                  up    up            6
+1/1    me12-100gb-qsfp28                 up    up            12
 A      cpm-1                             up    up                      Active
 ===============================================================================
 ```
@@ -53,14 +53,14 @@ In this example, we are configuring the connector to use a 1x100G breakout.
 /configure port 1/1/c1 admin-state enable
 /configure port 1/1/c1 connector breakout c1-100g
 /configure port 1/1/c1/1 admin-state enable
-/configure port 1/1/c1/1 description "To Peering LAN"
+/configure port 1/1/c1/1 description "to-P1"
  commit
 ```
 
 The status of the port can be viewed using the below command:
 
 ```
-A:admin@SR1# /show port
+A:admin@pe1# /show port
 
 ===============================================================================
 Ports on Slot 1
@@ -75,22 +75,22 @@ Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
 The interface is given a name, IP and associated to a physical port.
 
 ```
-  /configure router "Base" interface "To-Peering-LAN" port 1/1/c1/1
-  /configure router "Base" interface "To-Peering-LAN" ipv4 primary address 192.168.0.1 prefix-length 24
-  /configure router "Base" interface "To-Peering-LAN" ipv6 address 2001:a8::4 prefix-length 124
+  /configure router "Base" interface "to-P1" port 1/1/c1/1
+  /configure router "Base" interface "to-P1" ipv4 primary address 192.168.111.2 prefix-length 30
+  /configure router "Base" interface "to-P1" ipv6 address 2001:db8:111::2 prefix-length 64
 ```
 
 The `system` interface is the router's loopback interface (like lo0 or loopback0). The name of this interface cannot be changed. If no explicit `router-id` is configured, the `system` interface IPv4 address is used as the router-id. The `system` interface should be assigned a /32 IP.
 
 ```
-  /configure router "Base" interface "system" ipv4 primary address 10.0.0.1 prefix-length 32
-  /configure router "Base" interface "system" ipv6 address 2001:1::101 prefix-length 128
+  /configure router "Base" interface "system" ipv4 primary address 10.10.10.1 prefix-length 32
+  /configure router "Base" interface "system" ipv6 address 2001:db8::1 prefix-length 128
 ```
 
 The status of the interfaces can be seen using the below command:
 
 ```
-A:admin@SR1# show router interface
+A:admin@pe1# show router interface
 
 ===============================================================================
 Interface Table (Router: Base)
@@ -98,13 +98,13 @@ Interface Table (Router: Base)
 Interface-Name                   Adm       Opr(v4/v6)  Mode    Port/SapId
    IP-Address                                                  PfxState
 -------------------------------------------------------------------------------
-To-Peering-LAN                   Up        Up/Up       Network 1/1/c1/1
-   192.168.0.1/24                                              n/a
-   2001:a8::4/124                                              PREFERRED
-   fe80::1668:ffff:fe00:0/64                                   PREFERRED
+to-P1                            Up        Up/Up       Network 1/1/c1/1
+   192.168.111.2/30                                            n/a
+   2001:db8:111::2/64                                          PREFERRED
+   fe80::e00:21ff:fe68:1f01/64                                 PREFERRED
 system                           Up        Up/Up       Network system
-   10.0.0.1/32                                                 n/a
-   2001:1::101/128                                             PREFERRED
+   10.10.10.1/32                                               n/a
+   2001:db8::1/128                                             PREFERRED
 -------------------------------------------------------------------------------
 Interfaces : 2
 ===============================================================================
@@ -113,34 +113,39 @@ Interfaces : 2
 
 # IGP - IS-IS
 
-IS-IS or OSPF will be required to connect with other routers within the same AS. In this example, we are configuring the router to be in IS-IS Level 2 and also enabled IPv6 native routing (the other option is MT). Port and interface configuration is similar to what is shown in previous section.
+IS-IS or OSPF will be required to connect with other routers within the same AS and provide loopbacks reachability. In this example, we are configuring the router to be in IS-IS Level 2 and also enabled IPv6 native routing (the other option is MT). Port and interface configuration is similar to what is shown in previous section.
 
 For more details on IS-IS configuration, visit [SR OS IS-IS Documentation](https://documentation.nokia.com/sr/23-10-2/books/unicast-routing-protocols/is-is-unicast-routing-protocols.html).
 
 ```
 /configure router "Base" isis 0 admin-state enable
+/configure router "Base" isis 0 advertise-router-capability area
 /configure router "Base" isis 0 ipv6-routing native
 /configure router "Base" isis 0 level-capability 2
-/configure router "Base" isis 0 system-id 0100.0000.0001
+/configure router "Base" isis 0 traffic-engineering true
 /configure router "Base" isis 0 area-address [49.0000]
-/configure router "Base" isis 0 interface "Interface-to-R1" interface-type point-to-point
+/configure router "Base" isis 0 interface "to-P1" interface-type point-to-point
 ```
 
 IS-IS adjacency status can be seen using the below command:
 
 ```
-A:admin@SR1 show router isis adjacency
+A:admin@pe1# show router isis adjacency 
 
 ===============================================================================
-Rtr Base ISIS Instance 0 Adjacency
+Rtr Base ISIS Instance 0 Adjacency 
 ===============================================================================
 System ID                Usage State Hold Interface                     MT-ID
 -------------------------------------------------------------------------------
-sr103                    L2    Up    25   Interface-to-R1               0
+p1                       L2    Up    23   to-P1                         0
 -------------------------------------------------------------------------------
 Adjacencies : 1
 ===============================================================================
 ```
+
+# SR-ISIS (Segment Routing MPLS)
+
+tbd
 
 # BGP
 
@@ -151,26 +156,30 @@ For more details on BGP configuration, visit [SR OS BGP Documentation](https://d
 ```
 /configure router "Base" autonomous-system 64400
 /configure router "Base" bgp router-id 10.0.0.1
+/configure router "Base" bgp rapid-withdrawal true
+/configure router "Base" bgp rapid-update evpn true
 /configure router "Base" bgp group "iBGP-Peering" type internal
 /configure router "Base" bgp group "iBGP-Peering" family evpn true
-/configure router "Base" bgp neighbor "192.168.0.3" group "iBGP-Peering"
-/configure router "Base" bgp neighbor "192.168.0.4" group "iBGP-Peering"
+/configure router "Base" bgp neighbor "10.10.10.2" group "iBGP-Peering"
+/configure router "Base" bgp neighbor "10.10.10.3" group "iBGP-Peering"
+/configure router "Base" bgp neighbor "10.10.10.4" group "iBGP-Peering"
+/configure router "Base" bgp neighbor "10.10.10.5" group "iBGP-Peering"
 ```
 
 BGP neighbor status can be seen using the below command.
 
 ```
-A:admin@SR1# show router bgp summary
+A:admin@pe1# show router bgp summary 
 ===============================================================================
- BGP Router ID:10.0.0.1         AS:64400       Local AS:64400
+ BGP Router ID:10.10.10.1       AS:64400       Local AS:64400      
 ===============================================================================
 BGP Admin State         : Up          BGP Oper State              : Up
-Total Peer Groups       : 1           Total Peers                 : 2
-Total VPN Peer Groups   : 0           Total VPN Peers             : 0
-Current Internal Groups : 1           Max Internal Groups         : 1
-Total BGP Paths         : 21          Total Path Memory           : 7416
-
--- snip --
+Total Peer Groups       : 1           Total Peers                 : 4         
+Total VPN Peer Groups   : 0           Total VPN Peers             : 0         
+Current Internal Groups : 1           Max Internal Groups         : 1         
+Total BGP Paths         : 67          Total Path Memory           : 25112     
+ 
+-- snip --    
 
 ===============================================================================
 BGP Summary
@@ -182,21 +191,27 @@ Description
                    AS PktRcvd InQ  Up/Down   State|Rcv/Act/Sent (Addr Family)
                       PktSent OutQ
 -------------------------------------------------------------------------------
-192.168.0.3
-                64503      20    0 00h07m26s 3/0/0 (IPv4)
-                           19    0           0/0/0 (IPv6)
-192.168.0.4
-                64503      27    0 00h10m05s 2/0/0 (IPv4)
-                           41    0           1/0/0 (IPv6)
+10.10.10.2
+                64400      42    0 00h17m31s 4/4/4 (Evpn)
+                           42    0           
+10.10.10.3
+                64400      42    0 00h17m31s 4/4/4 (Evpn)
+                           42    0           
+10.10.10.4
+                64400      42    0 00h17m31s 4/4/4 (Evpn)
+                           42    0           
+10.10.10.5
+                64400      42    0 00h17m32s 4/4/4 (Evpn)
+                           42    0           
 -------------------------------------------------------------------------------
 ```
 
 To list the received routes from a neighbor, use the below command:
 
 ```
-A:admin@SR1# show router bgp neighbor 192.168.0.3 received-routes
+A:admin@pe1# show router bgp neighbor "10.10.10.3" received-routes evpn 
 ===============================================================================
- BGP Router ID:10.0.0.1         AS:64501       Local AS:64501
+ BGP Router ID:10.10.10.1       AS:64400       Local AS:64400      
 ===============================================================================
  Legend -
  Status codes  : u - used, s - suppressed, h - history, d - decayed, * - valid
@@ -204,30 +219,59 @@ A:admin@SR1# show router bgp neighbor 192.168.0.3 received-routes
  Origin codes  : i - IGP, e - EGP, ? - incomplete
 
 ===============================================================================
-BGP IPv4 Routes
+BGP EVPN Auto-Disc Routes
 ===============================================================================
-Flag  Network                                            LocalPref   MED
-      Nexthop (Router)                                   Path-Id     IGP Cost
-      As-Path                                                        Label
+Flag  Route Dist.         ESI                           NextHop
+      Tag                                               Label
 -------------------------------------------------------------------------------
-i     10.10.1.24/29                                      n/a         None
-      192.168.0.3                                        None        0
-      64503                                                          -
-i     10.10.20.103/32                                    n/a         None
-      192.168.0.3                                        None        0
-      64503                                                          -
-i     192.168.0.0/24                                     n/a         None
-      192.168.0.3                                        None        0
-      64503                                                          -
+No Matching Entries Found.
+===============================================================================
+
+===============================================================================
+BGP EVPN MAC Routes
+===============================================================================
+Flag  Route Dist.         MacAddr           ESI
+      Tag                 Mac Mobility      Label1
+                          Ip Address        
+                          NextHop           
+-------------------------------------------------------------------------------
+u*>i  10.10.10.3:100      0c:00:26:ca:f0:3a ESI-0
+      0                   Static            LABEL 524287
+                          n/a
+                          10.10.10.3
+
+u*>i  10.10.10.3:100      aa:c1:ab:07:fa:0c ESI-0
+      0                   Seq:0             LABEL 524287
+                          n/a
+                          10.10.10.3
+
+u*>i  10.10.10.3:100      aa:c1:ab:07:fa:0c ESI-0
+      0                   Seq:0             LABEL 524287
+                          192.168.0.1
+                          10.10.10.3
+
 -------------------------------------------------------------------------------
 Routes : 3
+===============================================================================
+
+===============================================================================
+BGP EVPN Inclusive-Mcast Routes
+===============================================================================
+Flag  Route Dist.         OrigAddr
+      Tag                 NextHop
+-------------------------------------------------------------------------------
+u*>i  10.10.10.3:100      10.10.10.3
+      0                   10.10.10.3
+
+-------------------------------------------------------------------------------
+Routes : 1
 ===============================================================================
 ```
 
 To monitor the number of routes installed per line card, use the below command:
 
 ```
-A:admin@SR1# show router fib 1 summary ipv4
+A:admin@pe1# show router fib 1 summary ipv4
 
 ===============================================================================
 FIB Summary
