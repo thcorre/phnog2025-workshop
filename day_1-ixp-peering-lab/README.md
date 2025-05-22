@@ -110,3 +110,144 @@ Interfaces : 2
 ===============================================================================
 
 ```
+
+# IGP - IS-IS
+
+IS-IS or OSPF will be required to connect with other routers within the same AS. In this example, we are configuring the router to be in IS-IS Level 2 and also enabled IPv6 native routing (the other option is MT). Port and interface configuration is similar to what is shown in previous section.
+
+For more details on IS-IS configuration, visit [SR OS IS-IS Documentation](https://documentation.nokia.com/sr/23-10-2/books/unicast-routing-protocols/is-is-unicast-routing-protocols.html).
+
+```
+/configure router "Base" isis 0 admin-state enable
+/configure router "Base" isis 0 ipv6-routing native
+/configure router "Base" isis 0 level-capability 2
+/configure router "Base" isis 0 system-id 0100.0000.0001
+/configure router "Base" isis 0 area-address [49.0000]
+/configure router "Base" isis 0 interface "Interface-to-R1" interface-type point-to-point
+```
+
+IS-IS adjacency status can be seen using the below command:
+
+```
+A:admin@SR1 show router isis adjacency
+
+===============================================================================
+Rtr Base ISIS Instance 0 Adjacency
+===============================================================================
+System ID                Usage State Hold Interface                     MT-ID
+-------------------------------------------------------------------------------
+sr103                    L2    Up    25   Interface-to-R1               0
+-------------------------------------------------------------------------------
+Adjacencies : 1
+===============================================================================
+```
+
+# BGP
+
+In this example, we are peering with all other PEs in the IXP network (no RR). AS on the SR OS nodes is 64400.
+
+For more details on BGP configuration, visit [SR OS BGP Documentation](https://documentation.nokia.com/sr/23-10-2/books/unicast-routing-protocols/bgp-unicast-routing-protocols.html).
+
+```
+/configure router "Base" autonomous-system 64400
+/configure router "Base" bgp router-id 10.0.0.1
+/configure router "Base" bgp group "iBGP-Peering" type internal
+/configure router "Base" bgp group "iBGP-Peering" family evpn true
+/configure router "Base" bgp neighbor "192.168.0.3" group "iBGP-Peering"
+/configure router "Base" bgp neighbor "192.168.0.4" group "iBGP-Peering"
+```
+
+BGP neighbor status can be seen using the below command.
+
+```
+A:admin@SR1# show router bgp summary
+===============================================================================
+ BGP Router ID:10.0.0.1         AS:64400       Local AS:64400
+===============================================================================
+BGP Admin State         : Up          BGP Oper State              : Up
+Total Peer Groups       : 1           Total Peers                 : 2
+Total VPN Peer Groups   : 0           Total VPN Peers             : 0
+Current Internal Groups : 1           Max Internal Groups         : 1
+Total BGP Paths         : 21          Total Path Memory           : 7416
+
+-- snip --
+
+===============================================================================
+BGP Summary
+===============================================================================
+Legend : D - Dynamic Neighbor
+===============================================================================
+Neighbor
+Description
+                   AS PktRcvd InQ  Up/Down   State|Rcv/Act/Sent (Addr Family)
+                      PktSent OutQ
+-------------------------------------------------------------------------------
+192.168.0.3
+                64503      20    0 00h07m26s 3/0/0 (IPv4)
+                           19    0           0/0/0 (IPv6)
+192.168.0.4
+                64503      27    0 00h10m05s 2/0/0 (IPv4)
+                           41    0           1/0/0 (IPv6)
+-------------------------------------------------------------------------------
+```
+
+To list the received routes from a neighbor, use the below command:
+
+```
+A:admin@SR1# show router bgp neighbor 192.168.0.3 received-routes
+===============================================================================
+ BGP Router ID:10.0.0.1         AS:64501       Local AS:64501
+===============================================================================
+ Legend -
+ Status codes  : u - used, s - suppressed, h - history, d - decayed, * - valid
+                 l - leaked, x - stale, > - best, b - backup, p - purge
+ Origin codes  : i - IGP, e - EGP, ? - incomplete
+
+===============================================================================
+BGP IPv4 Routes
+===============================================================================
+Flag  Network                                            LocalPref   MED
+      Nexthop (Router)                                   Path-Id     IGP Cost
+      As-Path                                                        Label
+-------------------------------------------------------------------------------
+i     10.10.1.24/29                                      n/a         None
+      192.168.0.3                                        None        0
+      64503                                                          -
+i     10.10.20.103/32                                    n/a         None
+      192.168.0.3                                        None        0
+      64503                                                          -
+i     192.168.0.0/24                                     n/a         None
+      192.168.0.3                                        None        0
+      64503                                                          -
+-------------------------------------------------------------------------------
+Routes : 3
+===============================================================================
+```
+
+To monitor the number of routes installed per line card, use the below command:
+
+```
+A:admin@SR1# show router fib 1 summary ipv4
+
+===============================================================================
+FIB Summary
+===============================================================================
+                              Active
+-------------------------------------------------------------------------------
+Static                        0
+Direct                        3
+Host                          0
+BGP                           0
+BGP VPN                       0
+--snip---
+VPN Leak                      0
+-------------------------------------------------------------------------------
+Total Installed               4
+-------------------------------------------------------------------------------
+Current Occupancy             1%
+Overflow Count                0
+Suppressed by Selective FIB   0
+Occupancy Threshold Alerts
+    Alert Raised 0 Times;
+===============================================================================
+```
