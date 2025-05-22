@@ -1,4 +1,4 @@
-name: vm
+name: vm-${GROUP_ID}
  
 topology:
   nodes:

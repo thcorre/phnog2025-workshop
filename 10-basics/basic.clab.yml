@@ -1,4 +1,4 @@
-name: basic
+name: basic-${GROUP_ID}
 
 topology:
   nodes:

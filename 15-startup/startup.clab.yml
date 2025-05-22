@@ -1,4 +1,4 @@
-name: startup
+name: startup-${GROUP_ID}
 topology:
   nodes:
     srl:
