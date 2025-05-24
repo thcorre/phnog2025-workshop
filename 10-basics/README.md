@@ -35,48 +35,12 @@ topology:
     - endpoints: [srl:e1-1, ceos:eth1]
 ```
 
-## Deployment attempt #1
+## Deployment
 
 Try to deploy the lab:
 
 ```bash
-sudo containerlab deploy -t basic.clab.yml
-```
-
-Deployment fails, why?
-
-## Image management
-
-Check what images are available on the system:
-
-```bash
-docker images
-```
-
-Pull SR Linux container image (if it has not been pulled during attempt #1):
-
-```bash
-docker pull ghcr.io/nokia/srlinux
-```
-
-Import cEOS image and pay attention to the 2nd argument for the `docker import` command where you have to specify the image:
-
-```bash
-docker import ~/images/cEOS64-lab-4.32.0F.tar.xz ceos:4.32.0F
-```
-
-Check the local image store again:
-
-```bash
-docker images
-```
-
-## Deployment attempt #2
-
-Now that the images are available, try to deploy the lab again:
-
-```bash
-sudo containerlab deploy -t basic.clab.yml
+containerlab deploy -t basic.clab.yml
 ```
 
 Note, you can use a shortcut version of the same command - `sudo clab dep -t basic.clab.yml`.
@@ -88,7 +52,7 @@ The deployment should succeed.
 Connect to the Nokia SR Linux node using the container name:
 
 ```bash
-ssh clab-basic-srl
+ssh clab-basic-{GROUP_ID}-srl
 ```
 
 Connect to the cEOS node using its IP address (note, the IP might be different in your lab):
