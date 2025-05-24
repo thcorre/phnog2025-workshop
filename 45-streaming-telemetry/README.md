@@ -2,7 +2,7 @@
 
 > [!CAUTION]
 > Before proceeding, please destroy all other labs to free up the memory  
-> `sudo clab des -c -a` - destroys all running labs and removes their respective lab dirs
+> `clab des -c -a` - destroys all running labs and removes their respective lab dirs
 
 When pulling together what we have learned so far, we can build a lab that embodies a lot of what containerlab has to offer. One of the labs that we've built to demonstrate the power of containerlab is the [Streaming Telemetry Lab](https://github.com/srl-labs/srl-telemetry-lab).
 
