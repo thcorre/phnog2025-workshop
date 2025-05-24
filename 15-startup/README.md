@@ -19,7 +19,7 @@ We start by deploying a lab defined in the `startup.clab.yml` topology file. The
 We will use the shortened syntax when deploying the lab; less typing and more fun!
 
 ```bash
-sudo clab dep -c
+clab dep -c
 ```
 
 > Note, that when calling `clab dep -c` the containerlab will try to find the `*.clab.yml` file in the current working directory. If the file is located elsewhere, you can specify the path to the file as an argument to the `clab dep` command.  
