@@ -143,10 +143,6 @@ Adjacencies : 1
 ===============================================================================
 ```
 
-# SR-ISIS (Segment Routing MPLS)
-
-tbd
-
 # BGP
 
 In this example, we are peering with all other PEs in the IXP network (no RR). AS on the SR OS nodes is 64400.
