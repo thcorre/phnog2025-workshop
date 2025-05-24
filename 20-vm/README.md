@@ -46,7 +46,7 @@ cd ~/innog8-workshop/20-vm
 Now lets deploy the lab:
 
 ```bash
-sudo clab dep -c
+clab dep -c
 ```
 
 At the end of the deployment, the following table will be displayed. Wait for the sonic boot to be completed (see next section), before trying to login to sonic.
