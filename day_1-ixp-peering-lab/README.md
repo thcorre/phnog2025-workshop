@@ -151,7 +151,7 @@ For more details on BGP configuration, visit [SR OS BGP Documentation](https://d
 
 ```
 /configure router "Base" autonomous-system 64400
-/configure router "Base" bgp router-id 10.0.0.1
+/configure router "Base" bgp router-id 10.10.10.1
 /configure router "Base" bgp rapid-withdrawal true
 /configure router "Base" bgp rapid-update evpn true
 /configure router "Base" bgp group "iBGP-Peering" type internal
