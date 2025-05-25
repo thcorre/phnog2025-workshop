@@ -296,6 +296,9 @@ Occupancy Threshold Alerts
 
 # EVPN VPLS Service
 
+In this example below for PE3, we are creating an EVPN VPLS basic service in the IXP network for connecting the peering customers within the same Broadcast Domain.
+
+
 ```
 (gl)[/configure service vpls "1"]
 A:admin@pe3# info flat 
