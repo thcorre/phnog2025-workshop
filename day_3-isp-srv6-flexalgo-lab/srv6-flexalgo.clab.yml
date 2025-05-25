@@ -18,7 +18,8 @@ topology:
     R1:
       kind: nokia_sros
       type: ixr-e2c
-      startup-config: configs/R1/R1.cfg
+#      startup-config: configs/R1/R1.cfg
+      startup-config: configs/R1/R1.partial.cfg
       mgmt-ipv4: 172.90.${GROUP_ID}0.11
       mgmt-ipv6: 3fff:172:90:${GROUP_ID}0::11
 
