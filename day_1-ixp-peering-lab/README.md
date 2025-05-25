@@ -2,7 +2,7 @@
 
 This page provides the basic step-by-step configuration required to set up a Nokia 7750 Service Router as a PE in a modern IXP environment. All the required feature sets for a peering router are covered here with configuration and show examples. Most sections also provide links to Nokia documentation for further reading.
 
-All configurations are in MD-CLI flat format. Reference chassis is 7750 SR-1 and software version is SR OS 23.10R2. Use `show system info` command to verify your router's chassis model and software version.
+All configurations are in MD-CLI flat format. Reference chassis is 7750 SR-1 and software version is SR OS 24.10.R4. Use `show system info` and `show version` commands to verify your router's chassis model and software version.
 
 # Topology
 
@@ -71,6 +71,8 @@ Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
 1/1/c1        Up         Link Up                          conn   100GBASE-LR4*
 1/1/c1/1      Up    Yes  Up      9212 9212    - netw null cgige
 ```
+
+You can use also see the details for a specific port (e.g. 1/1/c1/1) via `show port 1/1/c1/1 detail` command.
 
 The interface is given a name, IP and associated to a physical port.
 
