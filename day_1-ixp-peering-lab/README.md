@@ -293,3 +293,22 @@ Occupancy Threshold Alerts
     Alert Raised 0 Times;
 ===============================================================================
 ```
+
+# EVPN VPLS Service
+
+```
+(gl)[/configure service vpls "1"]
+A:admin@pe3# info flat 
+    admin-state enable
+    customer "1"
+    service-mtu 9000
+    proxy-arp admin-state enable
+    proxy-arp dynamic-populate true
+    bgp 1 route-distinguisher "10.10.10.3:100"
+    bgp 1 route-target export "target:100:1"
+    bgp 1 route-target import "target:100:1"
+    bgp-evpn evi 1
+    bgp-evpn mpls 1 admin-state enable
+    bgp-evpn mpls 1 auto-bind-tunnel resolution any
+    sap 1/1/c3/1:0 { }
+```
