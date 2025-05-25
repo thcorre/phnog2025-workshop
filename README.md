@@ -115,17 +115,17 @@ If you would like to work locally on your personal device you should clone this 
 
 HTTPS:
 ```
-git clone https://github.com/nokia/innog8.git
+git clone https://github.com/thcorre/innog8-workshop.git
 ```
 
 SSH:
 ```
-git clone git@github.com:nokia/innog8.git
+git clone git@github.com:thcorre/innog8-workshop.git
 ```
 
 GitHub CLI:
 ```
-gh repo clone nokia/innog8
+gh repo clone thcorre/innog8-workshop
 ```
 
 ## Useful links
