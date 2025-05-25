@@ -2,7 +2,7 @@
 
 This page provides the basic step-by-step configuration required to set up a Nokia 7750 Service Router as a PE in a modern IXP environment. All the required feature sets for a peering router are covered here with configuration and show examples. Most sections also provide links to Nokia documentation for further reading.
 
-All configurations are in MD-CLI flat format. Reference chassis is 7750 SR-1 and software version is SR OS 23.10R2. Use `show system info` command to verify your router's chassis model and software version.
+All configurations are in MD-CLI flat format. Reference chassis is 7750 SR-1 and software version is SR OS 24.10.R4. Use `show system info` and `show version` commands to verify your router's chassis model and software version.
 
 # Topology
 
@@ -71,6 +71,8 @@ Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
 1/1/c1        Up         Link Up                          conn   100GBASE-LR4*
 1/1/c1/1      Up    Yes  Up      9212 9212    - netw null cgige
 ```
+
+You can use also see the details for a specific port (e.g. 1/1/c1/1) via `show port 1/1/c1/1 detail` command.
 
 The interface is given a name, IP and associated to a physical port.
 
@@ -145,13 +147,13 @@ Adjacencies : 1
 
 # BGP
 
-In this example, we are peering with all other PEs in the IXP network (no RR). AS on the SR OS nodes is 64400.
+In this example below for PE1, we are peering with all other PEs in the IXP network (no RR). AS on the SR OS nodes is 64400.
 
 For more details on BGP configuration, visit [SR OS BGP Documentation](https://documentation.nokia.com/sr/23-10-2/books/unicast-routing-protocols/bgp-unicast-routing-protocols.html).
 
 ```
 /configure router "Base" autonomous-system 64400
-/configure router "Base" bgp router-id 10.0.0.1
+/configure router "Base" bgp router-id 10.10.10.1
 /configure router "Base" bgp rapid-withdrawal true
 /configure router "Base" bgp rapid-update evpn true
 /configure router "Base" bgp group "iBGP-Peering" type internal
@@ -290,4 +292,26 @@ Suppressed by Selective FIB   0
 Occupancy Threshold Alerts
     Alert Raised 0 Times;
 ===============================================================================
+```
+
+# EVPN VPLS Service
+
+In this example below for PE3, we are creating an EVPN VPLS basic service in the IXP network for connecting the peering customers within the same Broadcast Domain.
+
+
+```
+(gl)[/configure service vpls "1"]
+A:admin@pe3# info flat 
+    admin-state enable
+    customer "1"
+    service-mtu 9000
+    proxy-arp admin-state enable
+    proxy-arp dynamic-populate true
+    bgp 1 route-distinguisher "10.10.10.3:100"
+    bgp 1 route-target export "target:100:1"
+    bgp 1 route-target import "target:100:1"
+    bgp-evpn evi 1
+    bgp-evpn mpls 1 admin-state enable
+    bgp-evpn mpls 1 auto-bind-tunnel resolution any
+    sap 1/1/c3/1:0 { }
 ```
