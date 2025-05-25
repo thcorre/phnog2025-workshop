@@ -147,7 +147,7 @@ Adjacencies : 1
 
 # BGP
 
-In this example, we are peering with all other PEs in the IXP network (no RR). AS on the SR OS nodes is 64400.
+In this example below for PE1, we are peering with all other PEs in the IXP network (no RR). AS on the SR OS nodes is 64400.
 
 For more details on BGP configuration, visit [SR OS BGP Documentation](https://documentation.nokia.com/sr/23-10-2/books/unicast-routing-protocols/bgp-unicast-routing-protocols.html).
 
