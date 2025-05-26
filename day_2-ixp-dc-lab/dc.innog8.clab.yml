@@ -44,32 +44,32 @@ topology:
     spine1:
       type: ixrd3l
       group: spine
-      startup-config: configs/fabric-init-2/spine1.cfg
+      startup-config: configs/fabric-final/spine1.cfg
       mgmt-ipv4: 172.80.${GROUP_ID}0.21
       mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::21
 
     spine2:
       type: ixrd3l
       group: spine
-      startup-config: configs/fabric-init-2/spine2.cfg
+      startup-config: configs/fabric-final/spine2.cfg
       mgmt-ipv4: 172.80.${GROUP_ID}0.22
       mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::22  
  
     ### LEAFS ###
     leaf1:
-      startup-config: configs/fabric-init-2/leaf1.cfg
+      startup-config: configs/fabric-final/leaf1.cfg
       mgmt-ipv4: 172.80.${GROUP_ID}0.11
       mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::11
       group: leaf
 
     leaf2:
-      startup-config: configs/fabric-init-2/leaf2.cfg
+      startup-config: configs/fabric-final/leaf2.cfg
       mgmt-ipv4: 172.80.${GROUP_ID}0.12
       mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::12
       group: leaf
 
     leaf3:
-      startup-config: configs/fabric-init-2/leaf3.cfg
+      startup-config: configs/fabric-final/leaf3.cfg
       mgmt-ipv4: 172.80.${GROUP_ID}0.13
       mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::13
       group: leaf
