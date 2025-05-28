@@ -34,7 +34,7 @@ If everything went according to plan, you should have received a physical piece 
 - HTTPS URL's towards this repo and access to a web based IDE in case you don't have one installed on your operating system.
 
 > !!! Make sure to backup any code, config, ... <u> offline (e.g your laptop)</u>.
-> The public cloud instances will be destroyed once the workshop is concluded.</p>
+> The public cloud instance will be destroyed once the workshop is concluded.</p>
 
 ### Group ID
 
