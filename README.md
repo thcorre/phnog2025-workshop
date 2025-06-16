@@ -83,7 +83,7 @@ The above topology contains a number of functional blocks to help you in area's 
   - 3x P-nodes (cEOS)
   - 5x PE-nodes (SR OS) using EVPN as the IXP L2 network
   - 2x Route Servers (BIRD, OpenBGPd) connected to PE1 and PE2
-  - 3x CE clients (FRR) which connect to their respective PEs and peer with the 2 Route Servers.
+  - 3x CE clients (FRR) which connect to their respective PEs and peer with the 2 Route Servers
   - Optional: a RPKI validator (Routinator) available through PE1
 
 - IXP DC lab:
@@ -91,14 +91,19 @@ The above topology contains a number of functional blocks to help you in area's 
     - 2x spines (spine1|spine2) and 3 leaf switches (leaf1|leaf2|leaf3)
   - IPv6 BGP unnumbered configured in the underlay
   - DCGW Integration in the DC (dcgw1|dcgw2)
+  - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic
   - a fully working telemetry stack (gNMIc/prometheus/grafana)
-  - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic. 
 
 - ISP SRv6 FlexAlgo lab:
-
+  - 5x Routers (SR OS) using:
+     - SRv6 with dynamic delay (via dedicated locators in FlexAlgo 128)
+     - EVPN IFL (Interface Less) as L3VPN network
+  - 2x Linux clients attached to both ends of the L3VPN service (R1, R5) allowing end-to-end connectivity and client traffic generation
+  - a fully working telemetry stack (gNMIc/prometheus/grafana)
+ 
 ### Help! I've bricked my lab, how do I redeploy? 
 
-When accessing your workshop Bare Metal you'll see the innog8 directory is a git clone of this repository.
+When accessing your workshop host, you'll see the innog8 directory is a git clone of this repository.
 The labs covered in this workshops (powered by [containerlab](https://www.containerlab.dev)), are available for you to use.
 
 If you have broken something and would like to restore the state without extensively troubleshooting, you can destroy and redeploy the command via following `clab` commands:
