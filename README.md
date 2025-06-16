@@ -13,7 +13,7 @@ Need help, not a problem, pop your hand in the air and we will be there to guide
 ## Pre-requisites
 A list of workshop modules. Each module is a self-contained guide that can be followed independently, but it is recommended to go through them in order if you are new to Containerlab.
 
-Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/innog8/-/wikis/uploads/e805ff11f4e57183630ffdb6e50b7c7d/Containerlab_INNOG8_Workshop_v4.pdf) to follow along with the workshop.
+Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/innog8/-/wikis/uploads/c1f764be0a03c957296f3ab0f9ea0c72/Containerlab_INNOG8_Workshop.pdf) to follow along with the workshop.
 
 1. [Containerlab Installation](05-install/README.md) guide
 2. [Basics first](10-basics/README.md)
