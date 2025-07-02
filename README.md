@@ -23,7 +23,7 @@ Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/innog8/
 6. [Packet capture](40-packet-capture/README.md)
 7. [A lab that has it ~all](45-streaming-telemetry/README.md)
 
-Did you love this workshop? Let us know in the comments of this [LinkedIn post](https://www.linkedin.com/posts/nokia-for-service-providers_visit-us-at-innog8-iispc-2025-activity-7325870778514575360-_lpa).
+Did you love this workshop? Let us know in the comments of this [LinkedIn post](https://www.linkedin.com/posts/thomascorre_datacenter-netdevops-networkautomation-activity-7342728809596538880-dCNJ).
 
 ## Lab Environment
 For this workshop each group of participants will receive their own dedicated directory running a copy of the lab topology.
