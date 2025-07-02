@@ -1,15 +1,20 @@
 site_name: PHNOG 2025
 theme:
   name: material
+  features:
+    - content.code.copy
+    - content.code.annotate 
   palette: 
     # Palette toggle for light mode
     - scheme: default
+      primary: red
       toggle:
         icon: material/brightness-7 
         name: Dark mode
 
     # Palette toggle for dark mode
     - scheme: slate
+      primary: red
       toggle:
         icon: material/brightness-4
         name: Light mode
