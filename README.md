@@ -1,8 +1,8 @@
-# Welcome at the Nokia workshop @ INNOG8!
+# Welcome at the Nokia workshop @ PhNOG 2025!
 
 This README is your starting point into the workshop, it should get you familiar with the lab environment provided by Nokia, and provide an overview of the suggested sample activities.
 
-During those 3 days you will work in groups on the pre-provided lab activities.
+During this day you will work in groups on the pre-provided lab activities.
 
 As long as you have a laptop with the ability to SSH, you should be good to go. 
 
@@ -59,13 +59,11 @@ Details provided in the session.
 
 Below you can find a table with links towards those pre-provided project which you can use as a baseline for the problem/project you might want to tackle or perform the tasks we've set up for you.
 
-Each pre-provided lab comes with a README of it's own, please click the below for more information.
+The lab comes with a README of its own, please click the below for more information.
 
 | Link to pre-provided labs | NOS | Difficulty |
 | --- | --- | --- |
-| [IXP Peering lab](./day_1-ixp-peering-lab) | SR OS, cEOS, FRR | Basic |
-| [IXP DC lab](./day_2-ixp-dc-lab) | SR Linux, SR OS | Intermediate |
-| [ISP SRv6 FlexAlgo lab](./day_3-isp-srv6-flexalgo-lab) | SR Linux, SR OS | Intermediate |
+| [IXP DC lab](./dc-lab) | SR Linux | Intermediate |
 
 #### Topology
 
@@ -77,15 +75,6 @@ When accessing your group instance you'll see this repository has already been c
 
 The above topology contains a number of functional blocks to help you in area's you might want to focus on, it contains:
 
-- IXP Peering lab:
-  - SR-MPLS (Dual-Stack ISIS)
-  - MP-BGP (SAFIs with IPv6 next-hop)
-  - 3x P-nodes (cEOS)
-  - 5x PE-nodes (SR OS) using EVPN as the IXP L2 network
-  - 2x Route Servers (BIRD, OpenBGPd) connected to PE1 and PE2
-  - 3x CE clients (FRR) which connect to their respective PEs and peer with the 2 Route Servers
-  - Optional: a RPKI validator (Routinator) available through PE1
-
 - IXP DC lab:
   - a CLOS model:
     - 2x spines (spine1|spine2) and 3 leaf switches (leaf1|leaf2|leaf3)
@@ -93,25 +82,18 @@ The above topology contains a number of functional blocks to help you in area's 
   - DCGW Integration in the DC (dcgw1|dcgw2)
   - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic
   - a fully working telemetry stack (gNMIc/prometheus/grafana)
-
-- ISP SRv6 FlexAlgo lab:
-  - 5x Routers (SR OS) using:
-     - SRv6 with dynamic delay (via dedicated locators in FlexAlgo 128)
-     - EVPN IFL (Interface Less) as L3VPN network
-  - 2x Linux clients attached to both ends of the L3VPN service (R1, R5) allowing end-to-end connectivity and client traffic generation
-  - a fully working telemetry stack (gNMIc/prometheus/grafana)
  
 ### Help! I've bricked my lab, how do I redeploy? 
 
-When accessing your workshop host, you'll see the innog8 directory is a git clone of this repository.
+When accessing your workshop host, you'll see the PhNOG2025 directory is a git clone of this repository.
 The labs covered in this workshops (powered by [containerlab](https://www.containerlab.dev)), are available for you to use.
 
 If you have broken something and would like to restore the state without extensively troubleshooting, you can destroy and redeploy the command via following `clab` commands:
 
 ``` 
 ~$ cd $HOME/
-~$ clab destroy innog8-workshop/day_1-ixp-peering-lab/peering.innog8.clab.yml --cleanup
-~$ clab deploy innog8-workshop/day_1-ixp-peering-lab/peering.innog8.clab.yml --reconfigure
+~$ clab destroy phnog2025-workshop/dc-lab/dc.phnog2025.clab.yml --cleanup
+~$ clab deploy phnog2025-workshop/dc-lab/dc.phnog2025.clab.yml --reconfigure
 ```
 
 ## Cloning this repository
@@ -120,17 +102,17 @@ If you would like to work locally on your personal device you should clone this 
 
 HTTPS:
 ```
-git clone https://github.com/thcorre/innog8-workshop.git
+git clone https://github.com/thcorre/phnog2025-workshop.git
 ```
 
 SSH:
 ```
-git clone git@github.com:thcorre/innog8-workshop.git
+git clone git@github.com:thcorre/phnog2025-workshop.git
 ```
 
 GitHub CLI:
 ```
-gh repo clone thcorre/innog8-workshop
+gh repo clone thcorre/phnog2025-workshop
 ```
 
 ## Useful links
