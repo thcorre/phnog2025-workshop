@@ -1,3 +1,5 @@
 site_name: My Docs
 theme:
   name: material
+site_url: https://topologies.dev
+use_directory_urls: true 
