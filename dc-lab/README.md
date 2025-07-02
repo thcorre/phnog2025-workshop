@@ -1,6 +1,6 @@
-# INNOG8 IXP DC Lab
+# PhNOG 2025 DC Lab
 
-Disclaimer: This lab, which is based on srl-sros-telemetry-lab <https://github.com/srl-labs/srl-sros-telemetry-lab> (Kudos to Marlon Paz, Roman Dodin, Kevin Todts) has been modified for INNOG8 workshop to align more with DC latest best practices (IPv6 underlay infra and use of unnumbered BGP underlay with IPv6 link-locals, bfd sessions used on eBGP peers, optimized BGP timers) as well as to demonstrate additional EVPN capabilities such as Multihoming All-Active.
+Disclaimer: This lab, which is based on srl-sros-telemetry-lab <https://github.com/srl-labs/srl-sros-telemetry-lab> (Kudos to Marlon Paz, Roman Dodin, Kevin Todts) has been modified for PhNOG 2025 workshop to align more with DC latest best practices (IPv6 underlay infra and use of unnumbered BGP underlay with IPv6 link-locals, bfd sessions used on eBGP peers, optimized BGP timers) as well as to demonstrate additional EVPN capabilities such as Multihoming All-Active.
 
 This lab represents a small Clos DC fabric with [Nokia SR Linux](https://learn.srlinux.dev/) switches running as containers and a DC gateways layer composed by [Nokia SROS](https://www.nokia.com/networks/technologies/service-router-operating-system/) DC Gateways on a containerized vSIM image.
 
@@ -33,10 +33,9 @@ clab destroy
 Once the lab has been deployed, the different SR Linux/SROS nodes can be accessed via SSH through their management IP address, given in the summary displayed after the execution of the deploy command. It is also possible to reach those nodes directly via their hostname, defined in the topology file. Linux clients cannot be reached via SSH, as it is not enabled, but it is possible to connect to them with a docker exec command.
 
 ```bash
-# reach a SR Linux leaf, spine or a dcgw via SSH
+# reach a SR Linux leaf or a spine via SSH
 ssh admin@leaf1
 ssh admin@spine1
-ssh admin@dcgw1
 
 # reach a Linux client via Docker
 docker exec -it client1 bash
@@ -44,13 +43,13 @@ docker exec -it client1 bash
 
 ## Fabric configuration
 
-The DC fabric used in this lab consists of three leaves, two spines and two DC gateways interconnected with each other as shown in the diagram.
+The DC fabric used in this lab consists of three leaves and two spines interconnected with each other as shown in the diagram.
 
 ![pic1](https://user-images.githubusercontent.com/86619221/205601635-609eb772-833b-4ac9-b2ab-dc3ed661c4a1.JPG)
 
-Leaves and spines use Nokia SR Linux IXR-D2L and IXR-D3L chassis respectively, DC gateways uses SR-1 chassis. Each network element of this topology is equipped with a [Fabric startup configuration file](configs/fabric) and [DCI startup configuration file](configs/dci) that is applied at the node's startup.
+Leaves and spines use Nokia SR Linux IXR-D2L and IXR-D3L chassis respectively. Each network element of this topology is equipped with a [Fabric startup configuration file](configs/fabric) that is applied at the node's startup.
 
-Once booted, network nodes will come up with interfaces, underlay protocols and overlay service configured. The fabric is configured with Layer 2 EVPN service between the leaves and DC gateways.
+Once booted, network nodes will come up with interfaces, underlay protocols and overlay service configured. The fabric is configured with Layer 2 EVPN service between the leaves.
 
 ### Verifying the underlay and overlay status
 
@@ -84,33 +83,6 @@ Summary:
 2 dynamic peers
 ```
 
-By connecting via SSH is also possible to one of the DC gateways verify the stats of those BGP sesions from the SROS perspective.
-
-```
-A:admin@dcgw1# /show router bgp summary | match Summary post-lines 20
-BGP Summary
-===============================================================================
-Legend : D - Dynamic Neighbor
-===============================================================================
-Neighbor
-Description
-                   AS PktRcvd InQ  Up/Down   State|Rcv/Act/Sent (Addr Family)
-                      PktSent OutQ
--------------------------------------------------------------------------------
-10.0.2.1
-                64512      51    0 00h18m17s 9/9/2 (Evpn)
-                           42    0           
-10.0.2.2
-                64512      60    0 00h18m17s 9/0/2 (Evpn)
-                           42    0           
-fe80::186c:eff:feff:1f-"spine1"(D)
-                65500     120    0 00h18m51s 5/5/7 (IPv4)
-                           83    0           
-fe80::18a2:fff:feff:1f-"spine2"(D)
-                65500     122    0 00h18m52s 5/5/6 (IPv4)
-                           94    0           
-```
-
 ## Running traffic
 
 To run traffic between the nodes, leverage `traffic.sh` control script.
@@ -134,8 +106,6 @@ To stop the traffic:
 ## Telemetry stack
 
 SR Linux has first-class Streaming Telemetry support thanks to 100% YANG coverage of state and config data. The wholistic coverage enables SR Linux users to stream **any** data off of the NOS with on-change, sample, or target-defined support. A discrepancy in visibility across APIs is not about SR Linux.
-
-The Nokia Service Router Operating System (SR OS) is robust and scalable OS and provides the foundation of Nokia's comprehensive portfolio of physical and virtualized routers. Provides Streaming Telemetry based on the OpenConfig gnmi.proto and the proprietary NOKIA SR OS YANG data models suporting sample, target-defined, on-change telemetry based on dial-in or dial-out calls.
 
 Telemetry is at the core of this lab. The following stack of software solutions has been chosen for it:
 
