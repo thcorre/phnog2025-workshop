@@ -1,5 +1,4 @@
-site_name: My Docs
-# theme:
-#   name: material
+site_name: PHNOG 2025
 site_url: https://topologies.dev
-use_directory_urls: true 
+theme:
+  name: material
