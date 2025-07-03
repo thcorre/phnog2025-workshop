@@ -12,9 +12,10 @@ theme:
         icon: material/brightness-7 
         name: Dark mode
 
-    # Palette toggle for dark mode
-    - scheme: slate
+    # Switch to light
+    - scheme: default
       primary: red
+      accent: red
       toggle:
         icon: material/brightness-4
         name: Light mode
