@@ -21,22 +21,6 @@ topology:
       image: ghcr.io/hellt/network-multitool
 
   nodes:
-    ### DCGWS ###
-    dcgw1:
-      kind: nokia_sros
-      mgmt-ipv4: 172.80.${GROUP_ID}0.51
-      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::51
-      type: sr-1
-      startup-config: configs/dcgw/dcgw1.partial.cfg
-      group: dc-gw
-    dcgw2:
-      kind: nokia_sros
-      mgmt-ipv4: 172.80.${GROUP_ID}0.52
-      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::52
-      type: sr-1
-      startup-config: configs/dcgw/dcgw2.partial.cfg
-      group: dc-gw
-
     ### SPINES ###
     spine1:
       type: ixrd3l
