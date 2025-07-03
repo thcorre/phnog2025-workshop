@@ -63,7 +63,7 @@ The lab comes with a README of its own, please click the below for more informat
 
 | Link to pre-provided labs | NOS | Difficulty |
 | --- | --- | --- |
-| [IXP DC lab](./dc-lab) | SR Linux | Intermediate |
+| [DC lab](./dc-lab) | SR Linux | Intermediate |
 
 #### Topology
 
