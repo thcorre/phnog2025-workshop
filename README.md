@@ -71,7 +71,7 @@ When accessing your group instance you'll see this repository has already been c
 
 *Don't worry: This is your personal group network, you cannot impact any other groups.*
 
-![topology](./innog8-topology.png)
+![topology](./phnog2025-topology.png)
 
 The above topology contains a number of functional blocks to help you in area's you might want to focus on, it contains:
 
