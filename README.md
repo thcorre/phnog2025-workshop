@@ -126,11 +126,6 @@ gh repo clone thcorre/phnog2025-workshop
 * [YANG Browser](https://yang.srlinux.dev/)
 * [gNxI Browser](https://gnxi.srlinux.dev/)
 
-### SR OS
-
-* [SR OS Release 24.10](https://documentation.nokia.com/sr/24-10/index.html)
-* [pySROS](https://network.developer.nokia.com/static/sr/learn/pysros/latest/index.html)
-
 ### Misc Tools/Software
 #### Windows
 
