@@ -21,7 +21,6 @@ Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/phnog20
 4. [VM-based nodes](20-vm/README.md)
 5. [Container registry](30-registry/README.md)
 6. [Packet capture](40-packet-capture/README.md)
-7. [A lab that has it ~all](45-streaming-telemetry/README.md)
 
 Did you love this workshop? Let us know in the comments of this [LinkedIn post](https://www.linkedin.com/posts/thomascorre_datacenter-netdevops-networkautomation-activity-7342728809596538880-dCNJ).
 

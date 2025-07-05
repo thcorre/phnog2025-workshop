@@ -8,9 +8,9 @@ To enter the lab directory, run the following command from anywhere in your term
 
 ```bash
 [*]─[rd-13]─[~]
-└──> cd ~/innog8-workshop/15-startup/
+└──> cd ~/phnog2025-workshop/15-startup/
 
-[*]─[rd-13]─[~/innog8-workshop/15-startup]
+[*]─[rd-13]─[~/phnog2025-workshop/15-startup]
 └──>
 ```
 

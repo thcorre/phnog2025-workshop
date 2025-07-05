@@ -28,9 +28,8 @@ The resulting image will be tagged as `vrnetlab/sonic-vm:202411`. This can be ve
 ```bash
 REPOSITORY                TAG       IMAGE ID       CREATED          SIZE
 vrnetlab/sonic-vm         202411    33b73b1dadc4   5 minutes ago    6.37GB
-ceos                      4.33.0F   927c8cd41224   53 minutes ago   2.46GB
+ceos                      4.33.1F   927c8cd41224   53 minutes ago   2.46GB
 ghcr.io/nokia/srlinux     latest    eb2a823cd8ce   8 days ago       2.35GB
-hello-world               latest    d2c94e258dcb   18 months ago    13.3kB
 ```
 
 ## Deploying the VM-based nodes lab
