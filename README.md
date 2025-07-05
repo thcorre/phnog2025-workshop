@@ -155,3 +155,8 @@ gh repo clone thcorre/phnog2025-workshop
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
 * [Eclipse](https://www.eclipse.org/downloads/)
 * [PyCharm](https://www.jetbrains.com/pycharm/download)
+
+#### VS Code extensions
+
+* [Containerlab VS Code Extension](https://containerlab.dev/manual/vsc-extension/)
+ 
