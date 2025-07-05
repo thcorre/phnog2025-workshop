@@ -45,7 +45,7 @@ docker exec -it client1 bash
 
 The DC fabric used in this lab consists of three leaves and two spines interconnected with each other as shown in the diagram.
 
-![pic1](https://user-images.githubusercontent.com/86619221/205601635-609eb772-833b-4ac9-b2ab-dc3ed661c4a1.JPG)
+![pic1](../phnog2025-workshop-topology.png)
 
 Leaves and spines use Nokia SR Linux IXR-D2L and IXR-D3L chassis respectively. Each network element of this topology is equipped with a [Fabric startup configuration file](configs/fabric) that is applied at the node's startup.
 
