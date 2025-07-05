@@ -75,10 +75,10 @@ When accessing your group instance you'll see this repository has already been c
 The above topology contains a number of functional blocks to help you in area's you might want to focus on, it contains:
 
 - IXP DC lab:
-  - a CLOS model:
+  - a 3-stage CLOS model:
     - 2x spines (spine1|spine2) and 3 leaf switches (leaf1|leaf2|leaf3)
   - IPv6 BGP unnumbered configured in the underlay
-  - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic
+  - Linux clients attached to both the GRT and VPRN services allowing a full mesh of traffic
   - a fully working telemetry stack (gNMIc/prometheus/grafana)
  
 ### Help! I've bricked my lab, how do I redeploy? 
