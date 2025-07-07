@@ -1,8 +1,11 @@
 # PhNOG 2025 DC Lab
 
-Disclaimer: This lab, which is based on srl-sros-telemetry-lab <https://github.com/srl-labs/srl-sros-telemetry-lab> (Kudos to Marlon Paz, Roman Dodin, Kevin Todts) has been modified for PhNOG 2025 workshop to align more with DC latest best practices (IPv6 underlay infra and use of unnumbered BGP underlay with IPv6 link-locals, bfd sessions used on eBGP peers, optimized BGP timers) as well as to demonstrate additional EVPN capabilities such as Multihoming All-Active.
+!!! info "Disclaimer"
+    This lab is based on [srl-sros-telemetry-lab](https://github.com/srl-labs/srl-sros-telemetry-lab). (Kudos to Marlon Paz, Roman Dodin and Kevin Todts). 
+    
+    We have modified the lab for this workshop to better align with the latest DC best practices (IPv6 underlay infra, Usage of BGP unnumbered underlay with IPv6 link-locals, BFD sessions used on eBGP peers, optimized BGP timers etc.) and to also demonstrate additional EVPN capabilities like All-Active multihoming.
 
-This lab represents a small Clos DC fabric with [Nokia SR Linux](https://learn.srlinux.dev/) switches running as containers and a DC gateways layer composed by [Nokia SROS](https://www.nokia.com/networks/technologies/service-router-operating-system/) DC Gateways on a containerized vSIM image.
+This lab represents a small Clos DC fabric with [Nokia SR Linux](https://learn.srlinux.dev/) switches running as containers and a DC gateways layer composed by [Nokia SROS](https://www.nokia.com/networks/technologies/service-router-operating-system/) DC Gateways on a containerized vSIM image (VM-based).
 
 Goals of this lab:
 
@@ -30,30 +33,39 @@ clab destroy
 
 ## Accessing the network elements
 
-Once the lab has been deployed, the different SR Linux/SROS nodes can be accessed via SSH through their management IP address, given in the summary displayed after the execution of the deploy command. It is also possible to reach those nodes directly via their hostname, defined in the topology file. Linux clients cannot be reached via SSH, as it is not enabled, but it is possible to connect to them with a docker exec command.
+Once the lab has been deployed, the different SR Linux and SROS nodes can be accessed via SSH through their management IP address, given in the table displayed after successful deployment of the Containerlab topology.
+
+!!! tip
+    Instead of using the IP addres to connect to the nodes, you can use the node hostname.
+
+    For example
+    ```bash
+    # reach a SR Linux leaf or a spine via SSH
+    ssh admin@leaf1
+    ssh admin@spine1
+    ```
+
+You can't SSH into the linux nodes. You must enter the shell using the `docker exec` command. Refer to the example below.
+
 
 ```bash
-# reach a SR Linux leaf or a spine via SSH
-ssh admin@leaf1
-ssh admin@spine1
-
 # reach a Linux client via Docker
 docker exec -it client1 bash
 ```
 
 ## Fabric configuration
 
-The DC fabric used in this lab consists of three leaves and two spines interconnected with each other as shown in the diagram.
+The DC fabric used in this lab consists of three leaf nodes and two spine nodes interconnected with each other as shown in the diagram.
 
 ![pic1](https://user-images.githubusercontent.com/86619221/205601635-609eb772-833b-4ac9-b2ab-dc3ed661c4a1.JPG)
 
-Leaves and spines use Nokia SR Linux IXR-D2L and IXR-D3L chassis respectively. Each network element of this topology is equipped with a [Fabric startup configuration file](configs/fabric) that is applied at the node's startup.
+Leaf and spine nodes use Nokia SR Linux IXR-D2L and IXR-D3L chassis respectively. Each network element of this topology is equipped with a [fabric startup configuration file](configs/fabric) that is applied at the node's startup.
 
-Once booted, network nodes will come up with interfaces, underlay protocols and overlay service configured. The fabric is configured with Layer 2 EVPN service between the leaves.
+Once booted, network nodes will come up with interfaces, underlay protocols and overlay service configured. The fabric is configured with Layer 2 EVPN service between the leaf nodes.
 
 ### Verifying the underlay and overlay status
 
-The underlay network is provided by eBGP, and the overlay network, by iBGP. By connecting via SSH to one of the leaves, it is possible to verify the status of those BGP sessions.
+The underlay network is provided by eBGP, and the overlay network, by iBGP. By connecting via SSH to one of the leaf nodes, it is possible to verify the status of those BGP sessions.
 
 ```
 A:leaf1# /show network-instance protocols bgp neighbor
@@ -85,7 +97,7 @@ Summary:
 
 ## Running traffic
 
-To run traffic between the nodes, leverage `traffic.sh` control script.
+To run test traffic through the fabric, we can leverage `traffic.sh` control script.
 
 To start the traffic:
 
@@ -105,7 +117,9 @@ To stop the traffic:
 
 ## Telemetry stack
 
-SR Linux has first-class Streaming Telemetry support thanks to 100% YANG coverage of state and config data. The wholistic coverage enables SR Linux users to stream **any** data off of the NOS with on-change, sample, or target-defined support. A discrepancy in visibility across APIs is not about SR Linux.
+SR Linux has first-class streaming telemetry support thanks to 100% YANG coverage of state and config data. 
+
+The wholistic coverage enables SR Linux users to stream **any** data off of the NOS with on-change, sample, or target-defined support. A discrepancy in visibility across APIs is not about SR Linux.
 
 Telemetry is at the core of this lab. The following stack of software solutions has been chosen for it:
 
@@ -117,9 +131,9 @@ Telemetry is at the core of this lab. The following stack of software solutions 
 
 ## Grafana
 
-Grafana is a key component of this lab. Lab's topology file includes grafana node along with its configuration parameters such as dashboards, datasources and required plugins.
+Grafana is a key component of this lab. The lab topology file includes grafana node along with its configuration parameters such as dashboards, datasources and required plugins.
 
-Grafana dashboard provided by this repository provides multiple views on the collected real-time data. Powered by [flowchart plugin](https://grafana.com/grafana/plugins/agenty-flowcharting-panel/) it overlays telemetry sourced data over graphics such as topology and front panel views:
+The Grafana dashboard provided by this repository provides multiple views on the collected real-time data. Powered by the [flowchart plugin](https://grafana.com/grafana/plugins/agenty-flowcharting-panel/), it overlays telemetry sourced data over graphics such as topology and front panel views of the devices.
 
 ![pic3](https://user-images.githubusercontent.com/86619221/205601697-bd5b68f0-e2c6-49d3-a1f3-1cb5b67b34d9.JPG)
 

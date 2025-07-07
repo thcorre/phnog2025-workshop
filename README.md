@@ -13,7 +13,7 @@ Need help, not a problem, pop your hand in the air and we will be there to guide
 ## Pre-requisites
 A list of workshop modules. Each module is a self-contained guide that can be followed independently, but it is recommended to go through them in order if you are new to Containerlab.
 
-Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/innog8/-/wikis/uploads/c1f764be0a03c957296f3ab0f9ea0c72/Containerlab_INNOG8_Workshop.pdf) to follow along with the workshop.
+Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/phnog2025/-/wikis/uploads/c1f764be0a03c957296f3ab0f9ea0c72/Containerlab_PHNOG2025_Workshop.pdf) to follow along with the workshop.
 
 1. [Containerlab Installation](05-install/README.md) guide
 2. [Basics first](10-basics/README.md)
@@ -63,7 +63,7 @@ The lab comes with a README of its own, please click the below for more informat
 
 | Link to pre-provided labs | NOS | Difficulty |
 | --- | --- | --- |
-| [IXP DC lab](./dc-lab) | SR Linux | Intermediate |
+| [DC lab](./dc-lab) | SR Linux | Intermediate |
 
 #### Topology
 
@@ -79,7 +79,6 @@ The above topology contains a number of functional blocks to help you in area's 
   - a CLOS model:
     - 2x spines (spine1|spine2) and 3 leaf switches (leaf1|leaf2|leaf3)
   - IPv6 BGP unnumbered configured in the underlay
-  - DCGW Integration in the DC (dcgw1|dcgw2)
   - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic
   - a fully working telemetry stack (gNMIc/prometheus/grafana)
  

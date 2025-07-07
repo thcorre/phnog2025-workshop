@@ -1,12 +1,12 @@
-# Welcome at the Nokia workshop @ PhNOG 2025!
+# Welcome to the Nokia workshop @ PhNOG 2025!
 
-This README is your starting point into the workshop, it should get you familiar with the lab environment provided by Nokia, and provide an overview of the suggested sample activities.
+This page is your starting point into the workshop, it should get you familiar with the lab environment provided by Nokia and provide an overview of the suggested sample activities.
 
 During this day you will work in groups on the pre-provided lab activities.
 
 As long as you have a laptop with the ability to SSH, you should be good to go. 
 
-Also not mandatory, however use of VScode editor would also be of great value to ease up things through the new containerlab extension.   
+It is not mandatory but usage of the VS Code editor with our [Containerlab extension](https://containerlab.dev/vscode) will enhance your experience.   
 
 Need help, not a problem, pop your hand in the air and we will be there to guide you. 
 
@@ -23,18 +23,20 @@ Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/innog8/
 6. [Packet capture](40-packet-capture/README.md)
 7. [A lab that has it ~all](45-streaming-telemetry/README.md)
 
-Did you love this workshop? Let us know in the comments of this [LinkedIn post](https://www.linkedin.com/posts/thomascorre_datacenter-netdevops-networkautomation-activity-7342728809596538880-dCNJ).
+Loved this workshop? Let us know in the comments of this [LinkedIn post](https://www.linkedin.com/posts/thomascorre_datacenter-netdevops-networkautomation-activity-7342728809596538880-dCNJ).
 
 ## Lab Environment
-For this workshop each group of participants will receive their own dedicated directory running a copy of the lab topology.
+For this workshop each group of participants will receive their own dedicated directory running an instance of the lab topology.
 
 If everything went according to plan, you should have received a physical piece of paper which contains:
 - a group ID allocated to your group
 - SSH credentials to a public cloud instance dedicated to your group. 
 - HTTPS URL's towards this repo and access to a web based IDE in case you don't have one installed on your operating system.
 
-> !!! Make sure to backup any code, config, ... <u> offline (e.g your laptop)</u>.
-> The public cloud instance will be destroyed once the workshop is concluded.</p>
+!!! Warning
+    Make sure to backup any code, config, ... ^^offline (e.g your laptop)^^.
+
+    The public cloud instance will be destroyed once the workshop is concluded.
 
 ### Group ID
 
@@ -42,13 +44,12 @@ Please refer to the paper provided by the workshop session leaders. If nothing h
 
 ### SSH
 
-hostname: `refer to the paper provided `
+- Hostname: **refer to the paper provided**
+- Username: **refer to the paper provided or the slide presented**
+- Password: **refer to the paper provided or the slide presented**
 
-username: `refer to the paper provided or the slide presented`
-
-password: `refer to the paper provided or the slide presented`
-
-[Optional] To enable password-less access to an instance, use `ssh-keygen -h` to generate a public/private key pair and then `ssh-copy-id` to copy it over.
+!!! tip
+    To enable password-less access to an instance, use `ssh-keygen -h` to generate a public/private key pair and then `ssh-copy-id` to copy it to the server.
 
 ### WiFi
 
@@ -59,59 +60,63 @@ Details provided in the session.
 
 Below you can find a table with links towards those pre-provided project which you can use as a baseline for the problem/project you might want to tackle or perform the tasks we've set up for you.
 
-The lab comes with a README of its own, please click the below for more information.
+The lab comes with a README of its own, please click the link below for more information.
 
 | Link to pre-provided labs | NOS | Difficulty |
 | --- | --- | --- |
-| [IXP DC lab](./dc-lab) | SR Linux | Intermediate |
+| [IXP DC lab](./dc-lab/README.md) | SR Linux | Intermediate |
 
 #### Topology
 
 When accessing your group instance you'll see this repository has already been cloned for you and a fully configured network (powered by [containerlab](https://www.containerlab.dev)).
 
-*Don't worry: This is your personal group network, you cannot impact any other groups.*
+!!! question "Will I interfere with other groups?"
+    Don't worry: This is your personal group network, you cannot impact any other groups.
 
-![topology](./innog8-topology.png)
+![topology](./phnog2025-topology.png)
 
 The above topology contains a number of functional blocks to help you in area's you might want to focus on, it contains:
 
 - IXP DC lab:
-  - a CLOS model:
-    - 2x spines (spine1|spine2) and 3 leaf switches (leaf1|leaf2|leaf3)
+    - a CLOS model:
+        - 2x spines (spine1|spine2) and 3 leaf switches (leaf1|leaf2|leaf3)
   - IPv6 BGP unnumbered configured in the underlay
   - DCGW Integration in the DC (dcgw1|dcgw2)
   - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic
   - a fully working telemetry stack (gNMIc/prometheus/grafana)
- 
+
 ### Help! I've bricked my lab, how do I redeploy? 
 
-When accessing your workshop host, you'll see the PhNOG2025 directory is a git clone of this repository.
+When accessing your workshop host, you'll see the PhNOG2025 directory is a clone of this repository.
+
 The labs covered in this workshops (powered by [containerlab](https://www.containerlab.dev)), are available for you to use.
 
 If you have broken something and would like to restore the state without extensively troubleshooting, you can destroy and redeploy the command via following `clab` commands:
 
-``` 
-~$ cd $HOME/
-~$ clab destroy phnog2025-workshop/dc-lab/dc.phnog2025.clab.yml --cleanup
-~$ clab deploy phnog2025-workshop/dc-lab/dc.phnog2025.clab.yml --reconfigure
+```sh
+cd $HOME/
+clab destroy -t phnog2025-workshop/dc-lab/dc.phnog2025.clab.yml --cleanup 
+clab deploy -t phnog2025-workshop/dc-lab/dc.phnog2025.clab.yml --reconfigure
 ```
 
 ## Cloning this repository
 
-If you would like to work locally on your personal device you should clone this repository. This can be done using one of the following commands.
+If you would like to work locally on your personal device you should clone this repository. 
 
-HTTPS:
-```
+This can be done using one of the following commands below.
+
+### HTTPS (Recommended)
+```sh
 git clone https://github.com/thcorre/phnog2025-workshop.git
 ```
 
-SSH:
-```
+### SSH
+```sh
 git clone git@github.com:thcorre/phnog2025-workshop.git
 ```
 
-GitHub CLI:
-```
+### GitHub CLI
+```sh
 gh repo clone thcorre/phnog2025-workshop
 ```
 

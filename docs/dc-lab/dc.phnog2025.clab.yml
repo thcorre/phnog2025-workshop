@@ -14,32 +14,13 @@ topology:
     kind: nokia_srlinux
 
   kinds:
-    nokia_sros:
-      image: registry.srlinux.dev/pub/vr-sros:24.10.R4
-      license: /licenses/license_sr_r24.key
     nokia_srlinux:
-      image: ghcr.io/nokia/srlinux:24.10.4
+      image: ghcr.io/nokia/srlinux:25.3.3
       type: ixrd2l
     linux:
       image: ghcr.io/hellt/network-multitool
 
   nodes:
-    ### DCGWS ###
-    dcgw1:
-      kind: nokia_sros
-      mgmt-ipv4: 172.80.${GROUP_ID}0.51
-      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::51
-      type: sr-1
-      startup-config: configs/dcgw/dcgw1.partial.cfg
-      group: dc-gw
-    dcgw2:
-      kind: nokia_sros
-      mgmt-ipv4: 172.80.${GROUP_ID}0.52
-      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::52
-      type: sr-1
-      startup-config: configs/dcgw/dcgw2.partial.cfg
-      group: dc-gw
-
     ### SPINES ###
     spine1:
       type: ixrd3l
@@ -108,11 +89,11 @@ topology:
       kind: linux
       mgmt-ipv4: 172.80.${GROUP_ID}0.33
       mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::33
-      binds:
-        - configs/client3:/config
       exec:
         - ip address add 172.17.0.3/24 dev eth1
         - ip -6 address add 2002::172:17:0:3/96 dev eth1
+        - iperf3 -s -p 5214 -D > iperf6_4.log
+        - iperf3 -s -p 5215 -D > iperf6_5.log
       group: server
     client4:
       kind: linux
@@ -121,30 +102,8 @@ topology:
       binds:
         - configs/client4:/config
       exec:
-        - bash /config/eth1.sh
-        - ip address add 172.17.0.4/24 dev eth1.10
-        - ip -6 address add 2002::172:17:0:4/96 dev eth1.10
-      group: 8
-    client5:
-      kind: linux
-      mgmt-ipv4: 172.80.${GROUP_ID}0.35
-      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::35
-      binds:
-        - configs/client5:/config
-      exec:
-        - bash /config/eth1.sh
-        - ip address add 172.17.0.5/24 dev eth1.10
-        - ip -6 address add 2002::172:17:0:5/96 dev eth1.10
-      group: 8
-    client6:
-      kind: linux
-      mgmt-ipv4: 172.80.${GROUP_ID}0.36
-      mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::36
-      exec:
-        - ip address add 172.17.0.6/24 dev eth1
-        - ip -6 address add 2002::172:17:0:6/96 dev eth1
-        - iperf3 -s -p 5214 -D > iperf6_4.log
-        - iperf3 -s -p 5215 -D > iperf6_5.log
+        - ip address add 172.17.0.4/24 dev eth1
+        - ip -6 address add 2002::172:17:0:4/96 dev eth1
       group: server
 
     ### TELEMETRY STACK ###
@@ -199,11 +158,5 @@ topology:
     - endpoints: ["leaf1:e1-1", "client1:eth1"]
     - endpoints: ["leaf1:e1-2", "client2:eth1"]
     - endpoints: ["leaf2:e1-1", "client2:eth2"]
-    - endpoints: ["leaf2:e1-2", "client6:eth1"]
-    - endpoints: ["leaf3:e1-1", "client3:eth1"]
-    - endpoints: ["dcgw1:eth1", "spine1:e1-31"]
-    - endpoints: ["dcgw2:eth1", "spine1:e1-32"]
-    - endpoints: ["dcgw1:eth2", "spine2:e1-31"]
-    - endpoints: ["dcgw2:eth2", "spine2:e1-32"]
-    - endpoints: ["client4:eth1", "dcgw1:eth3"]
-    - endpoints: ["client5:eth1", "dcgw2:eth3"]
+    - endpoints: ["leaf2:e1-2", "client3:eth1"]
+    - endpoints: ["leaf3:e1-1", "client4:eth1"]
