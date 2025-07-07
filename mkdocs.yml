@@ -1,4 +1,4 @@
-site_name: PHNOG 2025
+site_name: 🇵🇭 PHNOG 2025
 theme:
   name: material
   features:
@@ -7,7 +7,7 @@ theme:
   palette: 
     # Palette toggle for light mode
     - scheme: default
-      primary: red
+      primary: blue
       toggle:
         icon: material/brightness-7 
         name: Dark mode
