@@ -24,7 +24,7 @@ theme:
     - navigation.sections
   palette: 
     # Palette toggle for light mode
-    - scheme: default
+    - scheme: slate
       primary: blue
       toggle:
         icon: material/brightness-7 
@@ -32,8 +32,7 @@ theme:
 
     # Switch to light
     - scheme: default
-      primary: red
-      accent: red
+      primary: blue
       toggle:
         icon: material/brightness-4
         name: Light mode
