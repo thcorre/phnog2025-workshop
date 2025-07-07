@@ -99,8 +99,6 @@ topology:
       kind: linux
       mgmt-ipv4: 172.80.${GROUP_ID}0.34
       mgmt-ipv6: 3fff:172:80:${GROUP_ID}0::34
-      binds:
-        - configs/client4:/config
       exec:
         - ip address add 172.17.0.4/24 dev eth1
         - ip -6 address add 2002::172:17:0:4/96 dev eth1
