@@ -1,6 +1,13 @@
 # VM-based nodes in containerlab
 
-VM nodes integration in containerlab is based on the [hellt/vrnetlab](https://github.com/hellt/vrnetlab) project which is a fork of `vrnetlab/vrnetlab` where things were added to make it work with the container networking.
+Unfortunately not every NOS is available in a native containerized format, and many NOSes of today are still VM-based.
+
+However do not fear, as using the [vrnetlab](https://github.com/hellt/vrnetlab) we can package these VM-based NOSes into containers so that they can integrate cleanly into Containerlab.
+
+!!! info
+    The vrnetlab used in Containerlab is a fork of the original `vrnetlab/vrnetlab` project. The original project will not work in contianerlab, you must use the fork which has added extensions for better integration into Containerlab, as well as more supported NOSes.
+
+    Go to [containerlab.dev/vrnetlab](https://containerlab.dev/vrnetlab) to quickly navigate to the fork.
 
 Start with cloning the project:
 

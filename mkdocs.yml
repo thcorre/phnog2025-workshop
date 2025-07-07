@@ -1,9 +1,27 @@
 site_name: 🇵🇭 PHNOG 2025
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Install Containerlab: 05-install/README.md
+    - Containerlab basics: 10-basics/README.md
+  - Startup Configuration: 15-startup/README.md
+  - VM-Based Nodes: 20-vm/README.md
+  - Container registries: 30-registry/README.md
+  - Packet capture: 40-packet-capture/README.md
+  - Labs:
+    - Streaming telemetry: 45-streaming-telemetry/README.md
+    - DC Fabric lab: dc-lab/README.md
+
+
+
 theme:
   name: material
   features:
     - content.code.copy
     - content.code.annotate 
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.sections
   palette: 
     # Palette toggle for light mode
     - scheme: default
