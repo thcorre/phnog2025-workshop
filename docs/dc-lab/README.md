@@ -11,9 +11,7 @@ Goals of this lab:
 
 1. Demonstrate how a telemetry stack can be incorporated into the same clab topology file.
 2. Explain SR Linux wholistic telemetry support.
-3. Demonstrate SR Linux and SROS interoperability in the DC Fabric.
-4. Explain what a SROS based telemetry subscription is.
-5. Provide practical configuration examples for the gnmic collector to subscribe to fabric nodes and export metrics to Prometheus TSDB.
+3. Provide practical configuration examples for the gnmic collector to subscribe to fabric nodes and export metrics to Prometheus TSDB.
 
 ## Deploying the lab
 
@@ -57,7 +55,7 @@ docker exec -it client1 bash
 
 The DC fabric used in this lab consists of three leaf nodes and two spine nodes interconnected with each other as shown in the diagram.
 
-![pic1](https://user-images.githubusercontent.com/86619221/205601635-609eb772-833b-4ac9-b2ab-dc3ed661c4a1.JPG)
+![pic1](../phnog2025-workshop-topology.png)
 
 Leaf and spine nodes use Nokia SR Linux IXR-D2L and IXR-D3L chassis respectively. Each network element of this topology is equipped with a [fabric startup configuration file](configs/fabric) that is applied at the node's startup.
 
@@ -102,18 +100,14 @@ To run test traffic through the fabric, we can leverage `traffic.sh` control scr
 To start the traffic:
 
 * `bash traffic.sh start all` - start traffic between all nodes
-* `bash traffic.sh start 1-2` - start traffic between client1 and client2
 * `bash traffic.sh start 1-3` - start traffic between client1 and client3
-* `bash traffic.sh start 4-6` - start traffic between client4 and client6
-* `bash traffic.sh start 5-6` - start traffic between client5 and client6
+* `bash traffic.sh start 2-4` - start traffic between client2 and client4
 
 To stop the traffic:
 
 * `bash traffic.sh stop all` - stop traffic generation between all nodes
-* `bash traffic.sh stop 1-2` - stop traffic generation between client1 and client2
 * `bash traffic.sh stop 1-3` - stop traffic generation between client1 and client3
-* `bash traffic.sh stop 4-6` - stop traffic generation between client4 and client6
-* `bash traffic.sh stop 5-6` - stop traffic generation between client5 and client6
+* `bash traffic.sh stop 2-4` - stop traffic generation between client2 and client4
 
 ## Telemetry stack
 

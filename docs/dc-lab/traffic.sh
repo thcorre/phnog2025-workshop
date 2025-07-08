@@ -28,10 +28,12 @@ startTraffic5-6() {
 
 startAll() {
     echo "starting traffic on all clab-dc-${GROUP_ID}-clients"
+    echo "client2"
     docker exec clab-dc-${GROUP_ID}-client2 bash /config/iperf.sh
+    echo "client3"
     docker exec clab-dc-${GROUP_ID}-client3 bash /config/iperf.sh
-    docker exec clab-dc-${GROUP_ID}-client4 bash /config/iperf.sh
-    docker exec clab-dc-${GROUP_ID}-client5 bash /config/iperf.sh
+    # echo "client4"
+    # docker exec clab-dc-${GROUP_ID}-client4 bash /config/iperf.sh
 }
 
 stopTraffic2-1() {
