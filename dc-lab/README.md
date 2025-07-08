@@ -2,15 +2,13 @@
 
 Disclaimer: This lab, which is based on srl-sros-telemetry-lab <https://github.com/srl-labs/srl-sros-telemetry-lab> (Kudos to Marlon Paz, Roman Dodin, Kevin Todts) has been modified for PhNOG 2025 workshop to align more with DC latest best practices (IPv6 underlay infra and use of unnumbered BGP underlay with IPv6 link-locals, bfd sessions used on eBGP peers, optimized BGP timers) as well as to demonstrate additional EVPN capabilities such as Multihoming All-Active.
 
-This lab represents a small Clos DC fabric with [Nokia SR Linux](https://learn.srlinux.dev/) switches running as containers and a DC gateways layer composed by [Nokia SROS](https://www.nokia.com/networks/technologies/service-router-operating-system/) DC Gateways on a containerized vSIM image.
+This lab represents a small Clos DC fabric with [Nokia SR Linux](https://learn.srlinux.dev/) switches running as containers.
 
 Goals of this lab:
 
 1. Demonstrate how a telemetry stack can be incorporated into the same clab topology file.
 2. Explain SR Linux wholistic telemetry support.
-3. Demonstrate SR Linux and SROS interoperability in the DC Fabric.
-4. Explain what a SROS based telemetry subscription is.
-5. Provide practical configuration examples for the gnmic collector to subscribe to fabric nodes and export metrics to Prometheus TSDB.
+3. Provide practical configuration examples for the gnmic collector to subscribe to fabric nodes and export metrics to Prometheus TSDB.
 
 ## Deploying the lab
 
@@ -30,7 +28,7 @@ clab destroy
 
 ## Accessing the network elements
 
-Once the lab has been deployed, the different SR Linux/SROS nodes can be accessed via SSH through their management IP address, given in the summary displayed after the execution of the deploy command. It is also possible to reach those nodes directly via their hostname, defined in the topology file. Linux clients cannot be reached via SSH, as it is not enabled, but it is possible to connect to them with a docker exec command.
+Once the lab has been deployed, the different SR Linux nodes can be accessed via SSH through their management IP address, given in the summary displayed after the execution of the deploy command. It is also possible to reach those nodes directly via their hostname, defined in the topology file. Linux clients cannot be reached via SSH, as it is not enabled, but it is possible to connect to them with a docker exec command.
 
 ```bash
 # reach a SR Linux leaf or a spine via SSH
