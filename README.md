@@ -13,7 +13,7 @@ Need help, not a problem, pop your hand in the air and we will be there to guide
 ## Pre-requisites
 A list of workshop modules. Each module is a self-contained guide that can be followed independently, but it is recommended to go through them in order if you are new to Containerlab.
 
-Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/phnog2025/-/wikis/uploads/c1f764be0a03c957296f3ab0f9ea0c72/Containerlab_PHNOG2025_Workshop.pdf) to follow along with the workshop.
+Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/phnog25/-/blob/main/Containerlab_PhNOG_2025_Workshop_-_Draft.pdf) to follow along with the workshop.
 
 1. [Containerlab Installation](05-install/README.md) guide
 2. [Basics first](10-basics/README.md)
@@ -21,7 +21,6 @@ Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/phnog20
 4. [VM-based nodes](20-vm/README.md)
 5. [Container registry](30-registry/README.md)
 6. [Packet capture](40-packet-capture/README.md)
-7. [A lab that has it ~all](45-streaming-telemetry/README.md)
 
 Did you love this workshop? Let us know in the comments of this [LinkedIn post](https://www.linkedin.com/posts/thomascorre_datacenter-netdevops-networkautomation-activity-7342728809596538880-dCNJ).
 
@@ -71,15 +70,15 @@ When accessing your group instance you'll see this repository has already been c
 
 *Don't worry: This is your personal group network, you cannot impact any other groups.*
 
-![topology](./innog8-topology.png)
+![topology](./phnog2025-workshop-topology.png)
 
 The above topology contains a number of functional blocks to help you in area's you might want to focus on, it contains:
 
 - IXP DC lab:
-  - a CLOS model:
+  - a 3-stage CLOS model:
     - 2x spines (spine1|spine2) and 3 leaf switches (leaf1|leaf2|leaf3)
   - IPv6 BGP unnumbered configured in the underlay
-  - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic
+  - Linux clients attached allowing a full mesh of traffic
   - a fully working telemetry stack (gNMIc/prometheus/grafana)
  
 ### Help! I've bricked my lab, how do I redeploy? 
@@ -126,11 +125,6 @@ gh repo clone thcorre/phnog2025-workshop
 * [YANG Browser](https://yang.srlinux.dev/)
 * [gNxI Browser](https://gnxi.srlinux.dev/)
 
-### SR OS
-
-* [SR OS Release 24.10](https://documentation.nokia.com/sr/24-10/index.html)
-* [pySROS](https://network.developer.nokia.com/static/sr/learn/pysros/latest/index.html)
-
 ### Misc Tools/Software
 #### Windows
 
@@ -161,3 +155,8 @@ gh repo clone thcorre/phnog2025-workshop
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
 * [Eclipse](https://www.eclipse.org/downloads/)
 * [PyCharm](https://www.jetbrains.com/pycharm/download)
+
+#### VS Code extensions
+
+* [Containerlab VS Code Extension](https://containerlab.dev/manual/vsc-extension/)
+ 
