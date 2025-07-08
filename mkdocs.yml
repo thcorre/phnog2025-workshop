@@ -9,7 +9,6 @@ nav:
   - Container registries: 30-registry/README.md
   - Packet capture: 40-packet-capture/README.md
   - Labs:
-    - Streaming telemetry: 45-streaming-telemetry/README.md
     - DC Fabric lab: dc-lab/README.md
 
 
