@@ -88,8 +88,7 @@ The above topology contains a number of functional blocks to help you in area's 
     - a CLOS model:
         - 2x spines (spine1|spine2) and 3 leaf switches (leaf1|leaf2|leaf3)
   - IPv6 BGP unnumbered configured in the underlay
-  - DCGW Integration in the DC (dcgw1|dcgw2)
-  - Linux clients are attached to both the GRT and VPRN services allowing a full mesh of traffic
+  - Linux clients are attached to L2 EVPN service allowing a full mesh of traffic
   - a fully working telemetry stack (gNMIc/prometheus/grafana)
 
 ### Help! I've bricked my lab, how do I redeploy? 
