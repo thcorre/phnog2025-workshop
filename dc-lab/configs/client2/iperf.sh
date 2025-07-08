@@ -6,4 +6,4 @@
 # with 8 parallel tcp streams, each 200 Kbit/s == 1.6Mbit/s
 # using ipv6 interfaces
 pkill iperf3
-iperf3 -c 2002::172:17:0:4 -t 10000 -i 1 -p 5201 -B 2002::172:17:0:2 -P 32 -b 125K -M 1000 &
+iperf3 -c 2002::172:17:0:4 -t 10000 -i 1 -p 5202 -B 2002::172:17:0:2 -P 32 -b 125K -M 1000 &
