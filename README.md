@@ -41,6 +41,14 @@ If everything went according to plan, you should have received a physical piece 
 
 Please refer to the paper provided by the workshop session leaders. If nothing has been provided, not a problem, pop your hand in the air and an eager expert will be there to allocate one for you. 
 
+### VS Code (Recommended)
+
+Each group has a web VS Code environment available, multiple users are available to connect to the web vscode session at the same time.
+
+Navigate to `group<GROUP ID>.topologies.dev` and log in with your group password.
+
+@thcorre please put a screenshot of the web vscode here if you can.
+
 ### SSH
 
 - Hostname: **refer to the paper provided**
