@@ -5,7 +5,7 @@
     
     We have modified the lab for this workshop to better align with the latest DC best practices (IPv6 underlay infra, Usage of BGP unnumbered underlay with IPv6 link-locals, BFD sessions used on eBGP peers, optimized BGP timers etc.) and to also demonstrate additional EVPN capabilities like All-Active multihoming.
 
-This lab represents a small Clos DC fabric with [Nokia SR Linux](https://learn.srlinux.dev/) switches running as containers and a DC gateways layer composed by [Nokia SROS](https://www.nokia.com/networks/technologies/service-router-operating-system/) DC Gateways on a containerized vSIM image (VM-based).
+This lab represents a small Clos DC fabric with [Nokia SR Linux](https://learn.srlinux.dev/) switches running as containers.
 
 Goals of this lab:
 
@@ -15,7 +15,7 @@ Goals of this lab:
 
 ## Deploying the lab
 
-The lab is deployed with [containerlab](https://containerlab.dev) project where [`st.clab.yml`](st.clab.yml) file declaratively describes the lab topology.
+The lab is deployed with [containerlab](https://containerlab.dev) project.
 
 ```bash
 # deploy a lab
