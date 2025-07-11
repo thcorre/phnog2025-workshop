@@ -13,7 +13,7 @@ Need help, not a problem, pop your hand in the air and we will be there to guide
 ## Pre-requisites
 A list of workshop modules. Each module is a self-contained guide that can be followed independently, but it is recommended to go through them in order if you are new to Containerlab.
 
-Use the [official slide deck](https://gitlabe2.ext.net.nokia.com/thcorre/phnog25/-/wikis/uploads/cf2a6251c815eb37adca6f33965c7486/Containerlab_PhNOG_2025_Workshop.pdf) to follow along with the workshop.
+Use the [official slide deck](https://drive.google.com/file/d/1_MrqAPC94BvL7UpGaHV-8DqGdLOBwkfG/view?usp=drive_link) to follow along with the workshop.
 
 1. [Containerlab Installation](05-install/README.md) guide
 2. [Basics first](10-basics/README.md)
